@@ -1,12 +1,12 @@
-require('dotenv').config()
-const express  =require('express')
-const sequelize = require('./database')
+require('dotenv').config();
+const express  =require('express');
+const sequelize = require('./database');
 
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT; 
 
 
-const app = express()
+const app = express();
 
 const start = async()=> {
     try {
