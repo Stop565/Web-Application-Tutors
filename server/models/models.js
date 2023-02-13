@@ -14,7 +14,7 @@ const Likes = sequelize.define('likes',{
 })
 
 
-const Likes_announcement = sequelize.define('likes_announcement',{
+const LikesAnnouncement = sequelize.define('likesannouncement',{
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 })
 
@@ -26,18 +26,18 @@ const Announcement = sequelize.define('announcement',{
 })
 
 
-const Lesson_id = sequelize.define('lesson_id', {
+const Lesson = sequelize.define('lesson', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false},
 })
 
-const City_id = sequelize.define('city_id', {
+const City = sequelize.define('city', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false},
 })
 
 
-const Announcement_info = sequelize.define('announcement_info',{
+const AnnouncementInfo = sequelize.define('announcementinfo',{
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, unique: true, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: false}
@@ -54,37 +54,37 @@ User.hasOne(Likes);
 Likes.belongsTo(User);
 
 
-Likes.hasMany(Likes_announcement);
-Likes_announcement.belongsTo(Likes);
+Likes.hasMany(LikesAnnouncement);
+LikesAnnouncement.belongsTo(Likes);
 
 
-Lesson_id.hasMany(Announcement);
-Announcement.belongsTo(Lesson_id);
+Lesson.hasMany(Announcement);
+Announcement.belongsTo(Lesson);
 
 
-City_id.hasMany(Announcement);
-Announcement.belongsTo(City_id);
+City.hasMany(Announcement);
+Announcement.belongsTo(City);
 
   
-Announcement.hasMany(Likes_announcement);
-Likes_announcement.belongsTo(Announcement);
+Announcement.hasMany(LikesAnnouncement);
+LikesAnnouncement.belongsTo(Announcement);
 
 
-Announcement.hasMany(Announcement_info);
-Announcement_info.belongsTo(Announcement);
+Announcement.hasMany(AnnouncementInfo);
+AnnouncementInfo.belongsTo(Announcement);
 
 
-Lesson_id.belongsToMany(City_id, {through: LessonCity});
-City_id.belongsToMany(Lesson_id, {through: LessonCity});
+Lesson.belongsToMany(City, {through: LessonCity});
+City.belongsToMany(Lesson, {through: LessonCity});
 
 
 module.exports = {
     User,
     Likes,
-    Likes_announcement,
+    LikesAnnouncement,
     Announcement,
-    Lesson_id,
-    City_id,
-    Announcement_info,
+    Lesson,
+    City,
+    AnnouncementInfo,
     LessonCity,
 }

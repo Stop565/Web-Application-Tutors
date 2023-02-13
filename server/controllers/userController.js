@@ -12,7 +12,7 @@ class UserController {
     async check(req,res,next){
         const {id} = req.query;
         if (!id) {
-            return next(ApiError.badReq('shghh'));
+            return next(ApiError.badReq('Не вказаний ID'));
         }
         res.json(id);
     }

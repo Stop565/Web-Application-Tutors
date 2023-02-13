@@ -1,3 +1,5 @@
+const {Lesson_id} = require('../models/models')
+
 class LessonController {
     async create(req,res){
 
