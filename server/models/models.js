@@ -70,7 +70,7 @@ Announcement.hasMany(LikesAnnouncement);
 LikesAnnouncement.belongsTo(Announcement);
 
 
-Announcement.hasMany(AnnouncementInfo);
+Announcement.hasMany(AnnouncementInfo, {as: 'info'});
 AnnouncementInfo.belongsTo(Announcement);
 
 
