@@ -66,4 +66,4 @@ class AnnouncementController {
 
 }
 
-module.exports = new AnnouncementController
+module.exports = new AnnouncementController();
