@@ -12,7 +12,7 @@ const generateJwt = (id, email, role) => {
 }
 
 class UserController {
-    async registration(req,res){
+    async registration(req, res, next){
         const {email, password, role} = req.body;
         if ( !email || !password) {
             return next(ApiError.badReq('Некоректний email або пароль'));
@@ -27,15 +27,28 @@ class UserController {
         const user = await User.create({email, role, password: hashPassword});
         const likes = await Likes.create({userId: user.id});
         const token = generateJwt( user.id, user.email, user.role );
-        
+
         return res.json({token});
     }
 
-    async login(req,res){
+    async login(req, res, next){
+        const {email, password} = req.body;
+        const user = await User.findOne({where: {email}});
+        
+        if (!user){
+            return next(ApiError.badReq('Користувач не знайдений'));
+        }
 
+        let comparePassword = bcrypt.compareSync(password, user.password);
+        if (!comparePassword){
+            return next(ApiError.badReq('Введено невірний пароль!'));
+        }
+
+        const token = generateJwt(user.id, user.email, user.role);
+        return res.json({token});
     }
 
-    async check(req,res,next){
+    async check(req, res, next){
         const {id} = req.query;
         if (!id) {
             return next(ApiError.badReq('Не вказаний ID'));
@@ -44,4 +57,4 @@ class UserController {
     }
 }
 
-module.exports = new UserController()
+module.exports = new UserController();
