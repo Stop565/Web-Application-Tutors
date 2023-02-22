@@ -49,11 +49,8 @@ class UserController {
     }
 
     async check(req, res, next){
-        const {id} = req.query;
-        if (!id) {
-            return next(ApiError.badReq('Не вказаний ID'));
-        }
-        res.json(id);
+        const token = generateJwt(req.user.id, req.user.email, req.user.role);
+        return res.json({token});
     }
 }
 
