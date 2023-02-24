@@ -1,10 +1,10 @@
-const Router = require('express');
-const lessonController = require('../controllers/lessonController');
+import Router from 'express';
 const router = new Router();
-const checkRole = require('../middleware/checkRoleMiddleware');
+import lessonController from '../controllers/lessonController.js';
+import checkRole from '../middleware/checkRoleMiddleware.js';
 
 router.post('/', checkRole("ADMIN"), lessonController.create);
 router.get('/', lessonController.getAll);
 
 
-module.exports = router;
+export default router;

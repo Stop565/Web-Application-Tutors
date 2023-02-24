@@ -1,11 +1,11 @@
-const Router = require('express');
+import Router from 'express';
 const router = new Router();
-const announcementController = require('../controllers/announcementController');
-const authMiddleware = require('../middleware/authMiddleware');
+import announcementController from '../controllers/announcementController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 router.get('/', authMiddleware,);
 router.get('/:id', announcementController.getOne);
 
 
 
-module.exports = router;
+export default router;

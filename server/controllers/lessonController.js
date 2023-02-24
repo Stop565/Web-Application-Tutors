@@ -1,5 +1,5 @@
-const { Lesson } = require('../models/models');
-const ApiError = require('../error/ApiError');
+import { Lesson } from '../models/models.js';
+import ApiError from '../error/ApiError.js';
 
 class LessonController {
     async create(req, res) {
@@ -15,4 +15,4 @@ class LessonController {
 
 }
 
-module.exports = new LessonController();
+export default new LessonController();

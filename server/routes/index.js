@@ -1,10 +1,11 @@
-const Router = require('express');
+import Router from 'express';
 const router = new Router();
-const announcementRouter = require('./announcementRouter');
-const cityRouter = require('./cityRouter');
-const lessonRouter = require('./lessonRouter');
-const userRouter = require('./userRouter');
-const likesRouter = require('./likesRouter');
+import announcementRouter from './announcementRouter.js';
+import cityRouter from './cityRouter.js';
+import lessonRouter from './lessonRouter.js';
+import userRouter from './userRouter.js';
+import likesRouter from './likesRouter.js';
+
 
 
 
@@ -15,5 +16,5 @@ router.use('/announcement', announcementRouter);
 router.use('/likes', likesRouter);
 
 
-module.exports = router;
+export default router;
 

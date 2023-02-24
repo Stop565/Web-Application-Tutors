@@ -1,10 +1,10 @@
-const Router = require('express');
+import Router from 'express';
 const router = new Router();
-const announcementController = require('../controllers/announcementController');
+import announcementController from '../controllers/announcementController.js';
 
 router.post('/', announcementController.create);
 router.get('/', announcementController.getAll);
 router.get('/:id', announcementController.getOne);
 
 
-module.exports = router;
+export default router;

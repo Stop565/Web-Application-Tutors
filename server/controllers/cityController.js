@@ -1,5 +1,5 @@
-const { City } = require('../models/models');
-const ApiError = require('../error/ApiError');
+import { City } from '../models/models.js';
+import ApiError from '../error/ApiError.js';
 
 
 class CityController {
@@ -16,4 +16,4 @@ class CityController {
 
 }
 
-module.exports = new CityController();
+export default new CityController();

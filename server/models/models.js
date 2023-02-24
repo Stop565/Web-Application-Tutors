@@ -1,7 +1,7 @@
-const sequelize = require('../database')
-const {DataTypes} = require('sequelize');
+import sequelize from '../database.js';
+import { DataTypes } from 'sequelize';
 
-const User = sequelize.define('user',{
+const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     email: { type: DataTypes.STRING, unique: true },
     password: { type: DataTypes.STRING },
@@ -9,43 +9,43 @@ const User = sequelize.define('user',{
 })
 
 
-const Likes = sequelize.define('likes',{
+const Likes = sequelize.define('likes', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 })
 
 
-const LikesAnnouncement = sequelize.define('likesannouncement',{
+const LikesAnnouncement = sequelize.define('likesannouncement', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 })
 
-const Announcement = sequelize.define('announcement',{
+const Announcement = sequelize.define('announcement', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, unique: true, allowNull: false},
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
     price: { type: DataTypes.INTEGER, allowNull: false },
-    img: { type: DataTypes.STRING, allowNull: false},
+    img: { type: DataTypes.STRING, allowNull: false },
 })
 
 
 const Lesson = sequelize.define('lesson', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, unique: true, allowNull: false},
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
 })
 
 const City = sequelize.define('city', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, unique: true, allowNull: false},
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
 })
 
 
-const AnnouncementInfo = sequelize.define('announcementinfo',{
+const AnnouncementInfo = sequelize.define('announcementinfo', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, unique: true, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: false}
+    description: { type: DataTypes.STRING, allowNull: false }
 })
 
 //Таблиця зв'язків бази даних
 
-const LessonCity = sequelize.define('lessoncity',{
+const LessonCity = sequelize.define('lessoncity', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 })
 
@@ -65,20 +65,20 @@ Announcement.belongsTo(Lesson);
 City.hasMany(Announcement);
 Announcement.belongsTo(City);
 
-  
+
 Announcement.hasMany(LikesAnnouncement);
 LikesAnnouncement.belongsTo(Announcement);
 
 
-Announcement.hasMany(AnnouncementInfo, {as: 'info'});
+Announcement.hasMany(AnnouncementInfo, { as: 'info' });
 AnnouncementInfo.belongsTo(Announcement);
 
 
-Lesson.belongsToMany(City, {through: LessonCity});
-City.belongsToMany(Lesson, {through: LessonCity});
+Lesson.belongsToMany(City, { through: LessonCity });
+City.belongsToMany(Lesson, { through: LessonCity });
 
 
-module.exports = {
+export {
     User,
     Likes,
     LikesAnnouncement,
