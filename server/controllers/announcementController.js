@@ -9,11 +9,12 @@ class AnnouncementController {
     async create(req, res, next) {
         try {
             let { name, price, cityId, lessonId, info } = req.body;
+            let userId = req.user.id;
             const { img } = req.files;
             let fileName = uuid.v4() + '.jpg';
             img.mv(path.resolve('static', fileName));
 
-            const announcement = await Announcement.create({ name, price, cityId, lessonId, img: fileName });
+            const announcement = await Announcement.create({ name, price, cityId, lessonId, userId, img: fileName });
 
 
             if (info) {
