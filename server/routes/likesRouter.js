@@ -2,9 +2,14 @@ import Router from 'express';
 const router = new Router();
 import announcementController from '../controllers/announcementController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
+import likesController from '../controllers/likesController.js'
 
-router.get('/', authMiddleware,);
+
+
+router.post('/', authMiddleware, likesController.addLikesAnnouncement);
+router.get('/', authMiddleware, likesController.getAllLikes);
 router.get('/:id', announcementController.getOne);
+
 
 
 

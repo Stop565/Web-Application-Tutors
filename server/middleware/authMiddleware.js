@@ -14,7 +14,7 @@ const authMiddleware = function (req, res, next) {
         req.user = decoded;
         next();
     } catch (e) {
-        res.status(401).json({ message: "Користувач не авторизований!" })
+        res.status(401).json({ message: "Користувач не авторизований!" });
     }
 }
 
