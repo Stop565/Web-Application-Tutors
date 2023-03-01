@@ -4,13 +4,25 @@ import { Likes, LikesAnnouncement, Announcement } from '../models/models.js';
 
 class LikesController {
     async addLikesAnnouncement(req, res, next) {
-        let likeId = req.user.id;
-        let { announcementId } = req.query;
-        const addLikes = await LikesAnnouncement.create({ likeId, announcementId });
+        try {
+            let likeId = req.user.id;
+            let { announcementId } = req.query;
+            let likesCompare = await LikesAnnouncement.findAndCountAll({ where: { likeId, announcementId } });
+            let addLikes;
 
-        return res.json(addLikes);
 
+            if (likesCompare.count == 0) {
+                addLikes = await LikesAnnouncement.create({ likeId, announcementId });
+            } else {
+                addLikes = "Одне оголошенння не можна додати більше одного разу";
+            }
+
+            return res.json(addLikes);
+        } catch (e) {
+            return next(ApiError.badReq(e.message));
+        }
     }
+
 
 
 
@@ -31,13 +43,27 @@ class LikesController {
             let announcementLikesId = await Announcement.findAndCountAll({ where: { id } })
 
             return res.json(announcementLikesId);
+
         } catch (e) {
-
             return next(ApiError.badReq(e.message));
-
-            //return next(ApiError.badReq('Вподобаних оголошень немає'));
         }
     }
+
+
+    async removeOneLikes(req, res, next) {
+        try {
+            const { removeLike } = req.query;
+            let announcementId = removeLike;
+            let likeId = req.user.id;
+            let rem = await LikesAnnouncement.destroy({ where: { likeId, announcementId } });
+
+            return res.json(rem);
+
+        } catch (e) {
+            return next(ApiError.badReq(e.message));
+        }
+    }
+
 }
 
 
