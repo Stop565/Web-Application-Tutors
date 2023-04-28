@@ -40,5 +40,13 @@ export const adminRoutes = [
     {
         path: ADMIN_ROUTE,
         Component: <AdminPage />
+    },
+    {
+        path: LIKES_ROUTE,
+        Component: <LikesPage />
+    },
+    {
+        path: CREATE_ROUTE,
+        Component: <CreatePage />
     }
 ]
