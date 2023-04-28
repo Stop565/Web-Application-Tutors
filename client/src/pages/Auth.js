@@ -2,9 +2,10 @@ import React from "react";
 import { Container, Form, Card } from 'react-bootstrap'
 import Button from "react-bootstrap/Button";
 import { NavLink, useLocation } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
 
-const Auth = () => {
+const Auth = observer(() => {
     const location = useLocation();
     //console.log(location)
     const isLogin = location.pathname === '/login'
@@ -47,6 +48,6 @@ const Auth = () => {
             </Card>
         </Container>
     )
-}
+})
 
 export default Auth;

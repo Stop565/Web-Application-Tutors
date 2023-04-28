@@ -24,6 +24,8 @@ export default class AnnouncementStore {
             { id: 5, name: "Вікторія5", price: "300", img: "____5____" },
             { id: 2, name: "Вікторія2", price: "300", img: "____2____" },
         ]
+        this._selectedLesson = {}
+        this._selectedCity = {}
         makeAutoObservable(this);
     }
 
@@ -43,6 +45,14 @@ export default class AnnouncementStore {
         this._likes = likes;
     }
 
+    setSelectedLesson(lesson) {
+        this._selectedLesson = lesson;
+    }
+
+    setSelectedCity(city) {
+        this._selectedCity = city;
+    }
+
 
     get lessons() {
         return this._lessons;
@@ -58,5 +68,12 @@ export default class AnnouncementStore {
 
     get likes() {
         return this._likes;
+    }
+
+    get selectedLesson() {
+        return this._selectedLesson
+    }
+    get selectedCity() {
+        return this._selectedCity
     }
 }
