@@ -20,7 +20,7 @@ export const publicRoutes = [
         Component: <Auth />
     },
     {
-        path: ANNOUNCEMENT_ROUTE,
+        path: ANNOUNCEMENT_ROUTE + '/:id',
         Component: <AnnouncementPage />
     }
 ]
