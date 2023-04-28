@@ -8,28 +8,69 @@ import { NavLink } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite"
+import { useNavigate } from "react-router-dom";
 
 import './navbar.css'
 
 const NavBar = observer(() => {
     const { user } = useContext(Context);
+    const navigate = useNavigate()
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <NavLink to='/' style={{ color: 'white' }} >
+                <Nav onClick={() => navigate("/")} style={{ color: 'white' }} >
                     Tutors
-                </NavLink>
-                <NavDropdown style={{ color: 'white' }} title="Авторизація" id="collasible-nav-dropdown">
-                    <NavDropdown.Item href="/login">
-                        Ввійти
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/registration">
-                        Зареєструватися
-                    </NavDropdown.Item>
-                </NavDropdown>
+                </Nav>
+                {
+                    !user.isAuth && <>
+
+                        <NavDropdown className="btn" style={{ color: 'white' }} title="Авторизація" id="collasible-nav-dropdown">
+                            <NavDropdown.Item onClick={() => navigate("/login")}>
+                                Ввійти
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/registration")}>
+                                Зареєструватися
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    </>
+                }
+
+                {
+                    user.isAuth && user.isRole === "USER" && <Nav  >
+                        <Button className="btn" variant="outline-light" onClick={() => navigate("/")} >Мої оголошення</Button>
+                        <Button className="btn" variant={"outline-light"} onClick={() => navigate("/likes")}>Likes</Button>
+                        <Button className="btn" variant={"outline-light"} onClick={() => navigate("/create")} >Створити оголшення</Button>
+                        <Button className="btn" variant={"outline-light"} onClick={() => navigate("/")}  >Вийти</Button>
+
+                    </Nav>
+                }
+
+                {
+                    user.isAuth && user.isRole === "ADMIN" && <Nav  >
+                        <Button className="btn" variant="outline-light" onClick={() => navigate("/")} >Мої оголошення</Button>
+                        <Button className="btn" variant="outline-light" onClick={() => navigate("/likes")}>Likes</Button>
+                        <Button className="btn" variant="outline-light" onClick={() => navigate("/")} >Вийти</Button>
+                        <NavDropdown style={{ color: 'white' }} title=" Додати..." id="collasible-nav-dropdown">
+                            <NavDropdown.Item onClick={() => navigate("/create")}>
+                                Оголошення
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/admin")}>
+                                Предмет
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/admin")}>
+                                Місто
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                }
+
+
+
+
 
             </Container>
-        </Navbar>
+        </Navbar >
     )
 })
 
