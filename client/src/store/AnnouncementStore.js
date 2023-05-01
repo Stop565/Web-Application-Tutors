@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable } from "mobx";
 
 export default class AnnouncementStore {
     constructor() {
@@ -20,10 +20,6 @@ export default class AnnouncementStore {
             { id: 4, name: "Вікторія4", price: "300", img: "____4____" },
             { id: 5, name: "Вікторія5", price: "300", img: "____5____" },
         ]
-        this._likes = [
-            { id: 5, name: "Вікторія5", price: "300", img: "____5____" },
-            { id: 2, name: "Вікторія2", price: "300", img: "____2____" },
-        ]
         this._selectedLesson = {}
         this._selectedCity = {}
         makeAutoObservable(this);
@@ -39,10 +35,6 @@ export default class AnnouncementStore {
 
     setAnnouncements(announcements) {
         this._announcements = announcements;
-    }
-
-    setLikes(likes) {
-        this._likes = likes;
     }
 
     setSelectedLesson(lesson) {
@@ -66,13 +58,10 @@ export default class AnnouncementStore {
         return this._announcements;
     }
 
-    get likes() {
-        return this._likes;
-    }
-
     get selectedLesson() {
         return this._selectedLesson
     }
+
     get selectedCity() {
         return this._selectedCity
     }
