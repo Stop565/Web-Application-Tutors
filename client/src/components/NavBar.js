@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite"
 import { useNavigate } from "react-router-dom";
 
-import './navbar.css'
+import './css/navbar.css'
 
 const NavBar = observer(() => {
     const { user } = useContext(Context);

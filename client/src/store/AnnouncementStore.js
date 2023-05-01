@@ -14,11 +14,14 @@ export default class AnnouncementStore {
         ]
 
         this._announcements = [
-            { id: 1, name: "Вікторія1", price: "300", img: "____1____" },
-            { id: 2, name: "Вікторія2", price: "300", img: "____2____" },
-            { id: 3, name: "Вікторія3", price: "300", img: "____3____" },
-            { id: 4, name: "Вікторія4", price: "300", img: "____4____" },
-            { id: 5, name: "Вікторія5", price: "300", img: "____5____" },
+            { id: 1, name: "Вікторія1", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
+            { id: 2, name: "Вікторія2", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
+            { id: 3, name: "Вікторія3", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
+            { id: 4, name: "Вікторія4", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
+            { id: 5, name: "Вікторія5", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
+            { id: 6, name: "Вікторія6", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
+            { id: 7, name: "Вікторія7", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
+            { id: 8, name: "Вікторія8", price: "300", img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg" },
         ]
         this._selectedLesson = {}
         this._selectedCity = {}
