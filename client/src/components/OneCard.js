@@ -28,7 +28,6 @@ const OneCard = observer(({ el }) => {
 
     function press(e) {
         // інформація про подію
-        console.log(e.target.className)
         if (e.target.className === "btnCard btn btn-danger") return;
         if (e.target.className === "btnCard btn btn-light") return;
         if (e.target.className === "addLike") return;
