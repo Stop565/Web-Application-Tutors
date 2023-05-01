@@ -1,3 +1,21 @@
 .card{
     padding: 10px;
 }
+
+.rightCard{
+    padding-left: 10px;
+    padding-right: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.name{
+    font-size: 32px;
+}
+
+.btnCard{
+    margin-top: 20px;
+    text-align: center;
+    border: 2px solid black;
+}

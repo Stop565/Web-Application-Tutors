@@ -6,6 +6,7 @@ export default class AuthStore {
         this._likes = [
             { id: 5, name: "Вікторія5", price: "300", img: "____5____" },
             { id: 2, name: "Вікторія2", price: "300", img: "____2____" },
+            { id: 1, name: "Вікторія2", price: "300", img: "____2____" },
         ]
         makeAutoObservable(this);
     }

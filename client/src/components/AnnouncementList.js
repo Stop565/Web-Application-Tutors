@@ -8,7 +8,7 @@ const AnnouncementList = () => {
 
 
     return (
-        <Row className="d-flex">
+        <Row className="d-flex ">
             {announcement.announcements.map((el) =>
                 <OneCard key={el.id} el={el} />
             )}
