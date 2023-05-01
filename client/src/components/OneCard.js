@@ -9,6 +9,17 @@ import { observer } from "mobx-react-lite";
 const OneCard = observer(({ el }) => {
     const { user } = useContext(Context);
     const { authStore } = useContext(Context);
+
+
+    const funcLike = () => {
+        let flag = "light";
+        authStore.likes.map(like => {
+            if (like.id == el.id) return flag = "danger";
+        })
+        return flag
+    }
+
+
     return (
         <Col md={6} className="mt-4"  >
             <Card className="card" style={{ height: 220, cursor: 'pointer' }}>
@@ -20,12 +31,9 @@ const OneCard = observer(({ el }) => {
                         <div>Місто</div>
                         <div>{el.price} грн.</div>
                         {user.isAuth ?
-                            authStore.likes.map((like) =>
-                                <Button className="btnCard"
-                                    variant={el.id === like.id ? 'danger' : 'light'}
-
-                                >Вподобати</Button>
-                            )
+                            <Button className="btnCard"
+                                variant={funcLike()}
+                            >Вподобати</Button>
                             :
                             <p></p>}
                     </Col>
