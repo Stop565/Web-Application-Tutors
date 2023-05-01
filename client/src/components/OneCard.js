@@ -3,18 +3,21 @@ import { Context } from "../index";
 import { Button, Card, Col, Form, Image } from "react-bootstrap";
 import './css/onecard.css'
 import { observer } from "mobx-react-lite";
-
+import heart from '../set/heart-fill.svg'
 
 
 const OneCard = observer(({ el }) => {
     const { user } = useContext(Context);
     const { authStore } = useContext(Context);
 
-
+    let textBtn = "Вподобати";
     const funcLike = () => {
         let flag = "light";
         authStore.likes.map(like => {
-            if (like.id == el.id) return flag = "danger";
+            if (like.id == el.id) {
+                flag = "danger";
+                textBtn = "Додано до  "
+            }
         })
         return flag
     }
@@ -33,7 +36,7 @@ const OneCard = observer(({ el }) => {
                         {user.isAuth ?
                             <Button className="btnCard"
                                 variant={funcLike()}
-                            >Вподобати</Button>
+                            >{textBtn}  <img src={heart} /></Button>
                             :
                             <p></p>}
                     </Col>
