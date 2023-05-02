@@ -7,7 +7,7 @@ import heart from '../set/heart-fill.svg'
 
 
 
-const AnnouncementPage = () => {
+const AnnouncementPage = observer(() => {
     const announcement = {
         id: 2, name: "Вікторія1", price: "300",
         img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg",
@@ -63,6 +63,6 @@ const AnnouncementPage = () => {
             </Row>
         </Container>
     );
-}
+})
 
 export default AnnouncementPage;

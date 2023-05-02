@@ -6,6 +6,8 @@ import { Context } from "../index";
 import { observer } from "mobx-react-lite";
 
 
+
+
 const CreatePage = observer(() => {
     const { announcement } = useContext(Context)
     const [name, setName] = useState('')
@@ -44,9 +46,9 @@ const CreatePage = observer(() => {
     }
 
     return (
-        <Container>
-            <Card md={6} className="m-4">
-                <h1 id="contained-modal-title-vcenter" >
+        <Container className="d-flex justify-content-center align-items-center">
+            <Card md={6} className="m-4 " style={{ width: 600, }} >
+                <h1 id="contained-modal-title-vcenter"  >
                     Створення оголошення
                 </h1>
                 <Form>
@@ -133,7 +135,7 @@ const CreatePage = observer(() => {
                     <Button variant="outline-success" onClick={addDevice}>Створити оголошення</Button>
                 </Form>
             </Card>
-        </Container>
+        </Container >
     );
 })
 
