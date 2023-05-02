@@ -14,7 +14,14 @@ import './css/navbar.css'
 
 const NavBar = observer(() => {
     const { user } = useContext(Context);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+
+    const logOut = () => {
+        user.setUser({});
+        user.setIsAuth(false);
+        localStorage.removeItem('token');
+    }
 
     return (
         <Navbar bg="dark" variant="dark">
@@ -41,7 +48,7 @@ const NavBar = observer(() => {
                         <Button className="btn" variant="outline-light" onClick={() => navigate("/")} >Мої оголошення</Button>
                         <Button className="btn" variant={"outline-light"} onClick={() => navigate("/likes")}>Likes</Button>
                         <Button className="btn" variant={"outline-light"} onClick={() => navigate("/create")} >Створити оголшення</Button>
-                        <Button className="btn" variant={"outline-light"} onClick={() => navigate("/")}  >Вийти</Button>
+                        <Button className="btn" variant={"outline-light"} onClick={() => logOut()}  >Вийти</Button>
 
                     </Nav>
                 }
@@ -50,7 +57,7 @@ const NavBar = observer(() => {
                     user.isAuth && user.isRole === "ADMIN" && <Nav  >
                         <Button className="btn" variant="outline-light" onClick={() => navigate("/")} >Мої оголошення</Button>
                         <Button className="btn" variant="outline-light" onClick={() => navigate("/likes")}>Likes</Button>
-                        <Button className="btn" variant="outline-light" onClick={() => navigate("/")} >Вийти</Button>
+                        <Button className="btn" variant="outline-light" onClick={() => logOut()} >Вийти</Button>
                         <NavDropdown style={{ color: 'white' }} title=" Додати..." id="collasible-nav-dropdown">
                             <NavDropdown.Item onClick={() => navigate("/create")}>
                                 Оголошення
