@@ -13,8 +13,22 @@ const Main = observer(() => {
     useEffect(() => {
         fetchLessons().then((data) => announcement.setLessons(data));
         fetchCities().then((data) => announcement.setCities(data));
-        fetchAnnouncement().then((data) => announcement.setAnnouncements(data.rows));
+        fetchAnnouncement(null, null, 1, 5).then((data) => {
+            announcement.setAnnouncements(data.rows);
+            announcement.setTotalCount(data.count);
+        });
     }, [])
+
+
+    useEffect(() => {
+        fetchAnnouncement(announcement.selectedLesson.id, announcement.selectedCity.id, announcement.page, 3).then(data => {
+            announcement.setAnnouncements(data.rows)
+            announcement.setTotalCount(data.count)
+        })
+    }, [announcement.page, announcement.selectedLesson, announcement.selectedCity,])
+
+
+
     return (
         <Container>
             <Form className="mt-4 row">

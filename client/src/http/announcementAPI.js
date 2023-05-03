@@ -11,8 +11,8 @@ export const fetchCities = async () => {
     return data
 }
 
-export const fetchAnnouncement = async () => {
-    const { data } = await $host.get('api/announcement')
+export const fetchAnnouncement = async (lessonId, cityId, page, limit = 5) => {
+    const { data } = await $host.get('api/announcement', { params: { lessonId, cityId, page, limit } })
     return data
 }
 
