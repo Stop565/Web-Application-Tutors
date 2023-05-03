@@ -4,22 +4,23 @@ import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from 'react-router-dom'
 import { observer } from "mobx-react-lite";
 import heart from '../set/heart-fill.svg'
+import { fetchOneAnnouncement } from '../http/announcementAPI';
 
 
 
 const AnnouncementPage = observer(() => {
-    const announcement = {
-        id: 2, name: "Вікторія1", price: "300",
-        img: "https://dastarkhan24.kz/upload/iblock/3a6/3a6690501bd34dead6bb520094940db2.jpg",
-        info: [{ title: "1", description: "1" }, { title: "2", description: "2" }, { title: "3", description: "3" },]
-    }
-
+    const [announcement, setAnnouncement] = useState({ info: [] })
     const { user } = useContext(Context);
     const { authStore } = useContext(Context);
-
     const { id } = useParams()
 
-    console.log(id)
+
+    useEffect(() => {
+        fetchOneAnnouncement(id).then((data) => setAnnouncement(data))
+    }, [])
+
+
+
     let textBtn = "Вподобати";
     const funcLike = () => {
         let flag = "light";
@@ -36,7 +37,7 @@ const AnnouncementPage = observer(() => {
         <Container className="mt-5">
             <Row>
                 <Col md={4}>
-                    <Image width={300} height={300} src={announcement.img} />
+                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL + announcement.img} />
                 </Col>
                 <Col md={4}>
                     <Card

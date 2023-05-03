@@ -40,7 +40,7 @@ const OneCard = observer(({ el }) => {
             <Card onClick={(e) => press(e)}
                 className="card" style={{ height: 220, cursor: 'pointer' }}>
                 <Form className="d-flex ">
-                    <Image width={200} height={200} src={el.img}></Image>
+                    <Image width={200} height={200} src={process.env.REACT_APP_API_URL + el.img}></Image>
                     <Col className="rightCard">
                         <div className="name"
                         >{el.name}</div>

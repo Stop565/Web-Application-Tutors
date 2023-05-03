@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../index";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import LessonBar from "../components/LessonBar";
 import CityBar from "../components/CityBar";
 import AnnouncementList from "../components/AnnouncementList";
+import { observer } from "mobx-react-lite";
+import { fetchAnnouncement, fetchCities, fetchLessons } from "../http/announcementAPI";
 
-const Main = () => {
+const Main = observer(() => {
+    const { announcement } = useContext(Context);
+
+    useEffect(() => {
+        fetchLessons().then((data) => announcement.setLessons(data));
+        fetchCities().then((data) => announcement.setCities(data));
+        fetchAnnouncement().then((data) => announcement.setAnnouncements(data.rows));
+    }, [])
     return (
         <Container>
             <Form className="mt-4 row">
@@ -19,6 +29,6 @@ const Main = () => {
 
         </Container>
     )
-}
+});
 
 export default Main;

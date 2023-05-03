@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { Context } from "../index";
 import { Form, Row } from "react-bootstrap";
 import OneCard from "./OneCard";
+import { observer } from "mobx-react-lite";
 
 
 
-const AnnouncementList = () => {
+const AnnouncementList = observer(() => {
     const { announcement } = useContext(Context)
 
     return (
@@ -18,6 +19,6 @@ const AnnouncementList = () => {
         </Row>
 
     )
-}
+})
 
 export default AnnouncementList;
