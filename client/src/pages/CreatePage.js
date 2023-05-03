@@ -5,6 +5,7 @@ import { Context } from "../index";
 //import { createDevice, fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 import { observer } from "mobx-react-lite";
 import { createAnnouncement } from '../http/announcementAPI';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,10 @@ const CreatePage = observer(() => {
     const [price, setPrice] = useState(0)
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
+
+
+    const navigate = useNavigate();
+
 
     //  useEffect(() => {
     //     fetchTypes().then(data => announcement.setLessons(data))
@@ -44,7 +49,7 @@ const CreatePage = observer(() => {
         formData.append('cityId', announcement.selectedCity.id)
         formData.append('info', JSON.stringify(info))
         //console.log(formData)
-        createAnnouncement(formData)
+        createAnnouncement(formData).then((data) => navigate("/"))
     }
 
     return (

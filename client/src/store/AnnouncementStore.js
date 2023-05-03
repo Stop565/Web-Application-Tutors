@@ -28,10 +28,12 @@ export default class AnnouncementStore {
     }
 
     setSelectedLesson(lesson) {
+        this.setPage(1);
         this._selectedLesson = lesson;
     }
 
     setSelectedCity(city) {
+        this.setPage(1);
         this._selectedCity = city;
     }
 

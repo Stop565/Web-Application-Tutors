@@ -11,6 +11,7 @@ import { ANNOUNCEMENT_ROUTE } from "../utils/consts";
 const OneCard = observer(({ el }) => {
     const { user } = useContext(Context);
     const { authStore } = useContext(Context);
+    const { announcement } = useContext(Context);
     const navigate = useNavigate()
 
 
@@ -44,8 +45,8 @@ const OneCard = observer(({ el }) => {
                     <Col className="rightCard">
                         <div className="name"
                         >{el.name}</div>
-                        <div>Предмет</div>
-                        <div>Місто</div>
+                        <div>lessonCard</div>
+                        <div>Місто:   </div>
                         <div>{el.price} грн.</div>
                         {user.isAuth ?
                             <Button className="btnCard" variant={funcLike()}

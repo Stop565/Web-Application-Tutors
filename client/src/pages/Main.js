@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../index";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form } from "react-bootstrap";
 import LessonBar from "../components/LessonBar";
 import CityBar from "../components/CityBar";
 import AnnouncementList from "../components/AnnouncementList";
 import { observer } from "mobx-react-lite";
 import { fetchAnnouncement, fetchCities, fetchLessons } from "../http/announcementAPI";
+import Pages from "../components/Pages";
 
 const Main = observer(() => {
     const { announcement } = useContext(Context);
@@ -13,7 +14,7 @@ const Main = observer(() => {
     useEffect(() => {
         fetchLessons().then((data) => announcement.setLessons(data));
         fetchCities().then((data) => announcement.setCities(data));
-        fetchAnnouncement(null, null, 1, 5).then((data) => {
+        fetchAnnouncement(null, null, 1, 4).then((data) => {
             announcement.setAnnouncements(data.rows);
             announcement.setTotalCount(data.count);
         });
@@ -21,7 +22,7 @@ const Main = observer(() => {
 
 
     useEffect(() => {
-        fetchAnnouncement(announcement.selectedLesson.id, announcement.selectedCity.id, announcement.page, 3).then(data => {
+        fetchAnnouncement(announcement.selectedLesson.id, announcement.selectedCity.id, announcement.page, 4).then(data => {
             announcement.setAnnouncements(data.rows)
             announcement.setTotalCount(data.count)
         })
@@ -38,6 +39,7 @@ const Main = observer(() => {
                 <Col md={9}>
                     <CityBar />
                     <AnnouncementList />
+                    <Pages />
                 </Col>
             </Form>
 
