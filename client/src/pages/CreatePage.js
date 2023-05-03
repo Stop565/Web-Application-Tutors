@@ -4,6 +4,7 @@ import { Button, Dropdown, Form, Row, Col, Container, Card } from "react-bootstr
 import { Context } from "../index";
 //import { createDevice, fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 import { observer } from "mobx-react-lite";
+import { createAnnouncement } from '../http/announcementAPI';
 
 
 
@@ -34,15 +35,16 @@ const CreatePage = observer(() => {
         setFile(e.target.files[0])
     }
 
-    const addDevice = () => {
+    const addAnnouncement = () => {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('price', `${price}`)
         formData.append('img', file)
         formData.append('lessonId', announcement.selectedLesson.id)
-        formData.append('typeId', announcement.selectedCity.id)
+        formData.append('cityId', announcement.selectedCity.id)
         formData.append('info', JSON.stringify(info))
-        //createDevice(formData)
+        //console.log(formData)
+        createAnnouncement(formData)
     }
 
     return (
@@ -132,7 +134,7 @@ const CreatePage = observer(() => {
                 </Form>
                 <Form className="mt-4">
                     <Button variant="outline-danger" >Закрити</Button>
-                    <Button variant="outline-success" onClick={addDevice}>Створити оголошення</Button>
+                    <Button variant="outline-success" onClick={addAnnouncement}>Створити оголошення</Button>
                 </Form>
             </Card>
         </Container >
