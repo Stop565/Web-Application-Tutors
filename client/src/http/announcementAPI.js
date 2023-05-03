@@ -24,3 +24,11 @@ export const fetchOneAnnouncement = async (id) => {
 
 
 
+export const createAnnouncement = async (newAnnouncement) => {
+    const { data } = await $authHost.post('api/announcement', newAnnouncement)
+    return data
+}
+
+
+
+
