@@ -66,8 +66,8 @@ const City = sequelize.define('city',
 const AnnouncementInfo = sequelize.define('announcementinfo',
     {
         id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-        title: { type: DataTypes.STRING, unique: true, allowNull: false },
-        description: { type: DataTypes.STRING, allowNull: false }
+        title: { type: DataTypes.STRING, unique: false, allowNull: false },
+        description: { type: DataTypes.STRING, unique: false, allowNull: false }
     },
     {
         timestamps: false,

@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { Button, Dropdown, Form, Row, Col, Container, Card } from "react-bootstrap";
 import { Context } from "../index";
-//import { createDevice, fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
+
 import { observer } from "mobx-react-lite";
-import { createAnnouncement } from '../http/announcementAPI';
+import { createAnnouncement } from '../http/privateAPI';
 import { useNavigate } from "react-router-dom";
 
 
