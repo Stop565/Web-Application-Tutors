@@ -45,7 +45,7 @@ const NavBar = observer(() => {
 
                 {
                     user.isAuth && user.isRole === "USER" && <Nav  >
-                        <Button className="btn" variant="outline-light" onClick={() => navigate("/")} >Мої оголошення</Button>
+                        <Button className="btn" variant="outline-light" onClick={() => navigate("/myannouncement")} >Мої оголошення</Button>
                         <Button className="btn" variant={"outline-light"} onClick={() => navigate("/likes")}>Likes</Button>
                         <Button className="btn" variant={"outline-light"} onClick={() => navigate("/create")} >Створити оголшення</Button>
                         <Button className="btn" variant={"outline-light"} onClick={() => logOut()}  >Вийти</Button>

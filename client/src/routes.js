@@ -4,7 +4,8 @@ import Auth from "./pages/Auth"
 import CreatePage from "./pages/CreatePage"
 import LikesPage from "./pages/LikesPage"
 import Main from "./pages/Main"
-import { ADMIN_ROUTE, ANNOUNCEMENT_ROUTE, CREATE_ROUTE, LIKES_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts"
+import MyAnnouncement from "./pages/MyAnnouncement"
+import { ADMIN_ROUTE, ANNOUNCEMENT_ROUTE, CREATE_ROUTE, LIKES_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, MY_ANNOUNCEMENT, REGISTRATION_ROUTE } from "./utils/consts"
 
 export const publicRoutes = [
     {
@@ -33,6 +34,10 @@ export const authRoutes = [
     {
         path: CREATE_ROUTE,
         Component: <CreatePage />
+    },
+    {
+        path: MY_ANNOUNCEMENT,
+        Component: <MyAnnouncement />
     }
 ]
 
