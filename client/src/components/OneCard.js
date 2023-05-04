@@ -29,10 +29,11 @@ const OneCard = observer(({ el }) => {
 
     function press(e) {
         // інформація про подію
+        console.log(e.target.className);
         if (e.target.className === "btnCard btn btn-danger") return;
         if (e.target.className === "btnCard btn btn-light") return;
         if (e.target.className === "addLike") return;
-        return navigate(ANNOUNCEMENT_ROUTE + '/' + el.id)
+        //return navigate(ANNOUNCEMENT_ROUTE + '/' + el.id)
     }
 
 
@@ -57,9 +58,9 @@ const OneCard = observer(({ el }) => {
 
 
     return (
-        <Col md={6} className="mt-4"   >
+        <Col md={6} className="mt-4 d-flex"   >
             <Card onClick={(e) => press(e)}
-                className="card" style={{ height: 220, cursor: 'pointer' }}>
+                className="card d-flex" style={{ height: 220, cursor: 'pointer' }}>
                 <Form className="d-flex ">
                     <Image width={200} height={200} src={process.env.REACT_APP_API_URL + el.img}></Image>
                     <Col className="rightCard">
@@ -69,8 +70,8 @@ const OneCard = observer(({ el }) => {
                         <div>Місто: {cityCard}  </div>
                         <div>{el.price} грн.</div>
                         {user.isAuth ?
-                            <Button className="btnCard" variant={funcLike()}
-                            >{textBtn}  <img className="addLike" src={heart} /></Button>
+                            <Button className="btnCard d-flex" variant={funcLike()}
+                            >{textBtn} <img className="addLike" src={heart} /></Button>
                             :
                             <p></p>}
                     </Col>

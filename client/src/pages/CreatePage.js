@@ -49,7 +49,7 @@ const CreatePage = observer(() => {
         formData.append('cityId', announcement.selectedCity.id)
         formData.append('info', JSON.stringify(info))
         //console.log(formData)
-        createAnnouncement(formData).then((data) => navigate("/"))
+        createAnnouncement(formData).then(() => navigate("/"))
     }
 
     return (
