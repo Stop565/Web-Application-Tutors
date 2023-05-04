@@ -141,7 +141,7 @@ const CreatePage = observer(() => {
                     <Button variant="outline-danger" >Закрити</Button>
                     <Button variant="outline-success" onClick={addAnnouncement}>Створити оголошення</Button>
                 </Form>
-            </Card>
+            </Card >
         </Container >
     );
 })

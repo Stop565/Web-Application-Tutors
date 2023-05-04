@@ -63,7 +63,7 @@ const OneCard = observer(({ el }) => {
                 className="card d-flex" style={{ height: 220, cursor: 'pointer' }}>
                 <Form className="d-flex ">
                     <Image width={200} height={200} src={process.env.REACT_APP_API_URL + el.img}></Image>
-                    <Col className="rightCard">
+                    <Col className="rightCard d-flex">
                         <div className="name"
                         >{el.name}</div>
                         <div>{lessonCard}</div>

@@ -8,7 +8,7 @@ export default class AnnouncementStore {
 
         this._selectedLesson = {}
         this._selectedCity = {}
-        this._openAnnouncement = {}
+
 
         this._page = 1
         this._totalCount = 0
@@ -33,9 +33,7 @@ export default class AnnouncementStore {
         this.setPage(1);
         this._selectedCity = city;
     }
-    setOpenAnnouncement(dat) {
-        this._openAnnouncement = dat;
-    }
+
 
 
 
@@ -62,9 +60,7 @@ export default class AnnouncementStore {
     get selectedCity() {
         return this._selectedCity
     }
-    get openAnnouncement() {
-        return this._openAnnouncement;
-    }
+
 
 
 
