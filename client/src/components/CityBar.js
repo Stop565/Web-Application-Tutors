@@ -6,6 +6,13 @@ import { Card, Form, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 const CityBar = observer(() => {
     const { announcement } = useContext(Context);
 
+    function selectOnCity(el) {
+        if (el.id === announcement.selectedCity.id) {
+            announcement.setSelectedCity({})
+        } else announcement.setSelectedCity(el)
+    }
+
+
     return (
         <Form className="d-flex" >
             {announcement.cities.map((el) =>
@@ -14,7 +21,7 @@ const CityBar = observer(() => {
                     style={{ cursor: 'pointer' }}
                     border={el.id === announcement.selectedCity.id ? 'danger' : 'light'}
 
-                    onClick={() => announcement.setSelectedCity(el)}
+                    onClick={() => selectOnCity(el)}
                 >
                     {el.name}
                 </ Card>

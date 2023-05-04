@@ -13,8 +13,6 @@ const AnnouncementList = observer(() => {
     return (
         <Row className="d-flex ">
             {announcement.announcements.map((el) => {
-                //let lessonCard = 'allLesson[el.lessonId - 1].name' || ""
-                //let cityCard = 'allCity[el.cityId - 1].name' || ""
                 return <OneCard key={el.id} el={el} />
             }
 

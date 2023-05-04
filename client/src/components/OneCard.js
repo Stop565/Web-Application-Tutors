@@ -36,6 +36,26 @@ const OneCard = observer(({ el }) => {
     }
 
 
+    let lessonCard = "";
+    function leCard() {
+        announcement.lessons.map((l) => {
+            if (el.lessonId === l.id) lessonCard = l.name;
+        })
+    }
+    leCard();
+
+    let cityCard = "";
+    function ciCard() {
+        announcement.cities.map((c) => {
+            if (el.cityId === c.id) cityCard = c.name;
+        })
+    }
+    ciCard();
+
+
+
+
+
     return (
         <Col md={6} className="mt-4"   >
             <Card onClick={(e) => press(e)}
@@ -45,8 +65,8 @@ const OneCard = observer(({ el }) => {
                     <Col className="rightCard">
                         <div className="name"
                         >{el.name}</div>
-                        <div>lessonCard</div>
-                        <div>Місто:   </div>
+                        <div>{lessonCard}</div>
+                        <div>Місто: {cityCard}  </div>
                         <div>{el.price} грн.</div>
                         {user.isAuth ?
                             <Button className="btnCard" variant={funcLike()}
