@@ -58,7 +58,7 @@ const OneCard = observer(({ el }) => {
 
 
     return (
-        <Col md={6} className="mt-4 d-flex"   >
+        <Col md={6} className="mt-4 "   >
             <Card onClick={(e) => press(e)}
                 className="card d-flex" style={{ height: 220, cursor: 'pointer' }}>
                 <Form className="d-flex ">

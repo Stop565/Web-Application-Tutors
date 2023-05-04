@@ -21,7 +21,6 @@ const AnnouncementPage = observer(() => {
     }, [])
 
 
-
     let textBtn = "Вподобати";
     const funcLike = () => {
         let flag = "light";
@@ -34,15 +33,27 @@ const AnnouncementPage = observer(() => {
         return flag
     }
 
-    let lessonCard;
-    let cityCard;
-    //let lessonCard = announcement.lessons[oneAnnouncement.lessonId - 1].name
-    //let cityCard = announcement.cities[oneAnnouncement.cityId - 1].name
-    // console.log(announcement.lessons[1]["name"])
+    let lessonCard = "";
+    function leCard() {
+        announcement.lessons.map((l) => {
+            if (oneAnnouncement.lessonId === l.id) lessonCard = l.name;
+        })
+    }
+    leCard();
+
+    let cityCard = "";
+    function ciCard() {
+        announcement.cities.map((c) => {
+            if (oneAnnouncement.cityId === c.id) cityCard = c.name;
+        })
+    }
+    ciCard();
+
+
 
 
     return (
-        <Container className="mt-5">
+        <Container className="mt-5" >
             <Row>
                 <Col md={4}>
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + oneAnnouncement.img} />
@@ -53,11 +64,11 @@ const AnnouncementPage = observer(() => {
                         style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}
                     >
                         <h2>{oneAnnouncement.name}</h2>
-                        <h4>Предмет:   {lessonCard}</h4>
-                        <h4>Місто:  {cityCard} </h4>
+                        <h5>{lessonCard}</h5>
+                        <h5>Місто:  {cityCard} </h5>
                         <h3>Ціна: {oneAnnouncement.price} грн.</h3>
                         {user.isAuth ?
-                            <Button className="btnCard" variant={funcLike()}
+                            <Button className="btnCard m-auto" variant={funcLike()}
                             >{textBtn}  <img className="addLike" src={heart} /></Button>
                             :
                             <p></p>}
@@ -72,6 +83,7 @@ const AnnouncementPage = observer(() => {
                     </Row>
                 )}
             </Row>
+
         </Container>
     );
 })
