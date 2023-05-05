@@ -10,3 +10,13 @@ export const fetchMyAnnouncement = async () => {
     const { data } = await $authHost.get('api/myannouncement')
     return data
 }
+
+export const AddRemoveLike = async (announcementId) => {
+    const { data } = await $authHost.post('api/likes', { params: { announcementId } })
+    return data
+}
+
+export const fetchLikes = async () => {
+    const { data } = await $authHost.get('api/likes')
+    return data
+}

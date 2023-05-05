@@ -19,7 +19,7 @@ const OneCard = observer(({ el }) => {
     const funcLike = () => {
         let flag = "light";
         authStore.likes.map(like => {
-            if (like.id == el.id) {
+            if (like.announcementId == el.id) {
                 flag = "danger";
                 textBtn = "Додано до  "
             }
@@ -52,8 +52,6 @@ const OneCard = observer(({ el }) => {
         })
     }
     ciCard();
-
-
 
 
 

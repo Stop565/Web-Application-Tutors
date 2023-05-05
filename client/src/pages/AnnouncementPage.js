@@ -25,13 +25,14 @@ const AnnouncementPage = observer(() => {
     const funcLike = () => {
         let flag = "light";
         authStore.likes.map(like => {
-            if (like.id === oneAnnouncement.id) {
+            if (like.announcementId == oneAnnouncement.id) {
                 flag = "danger";
                 textBtn = "Додано до  "
             }
         })
         return flag
     }
+
 
     let lessonCard = "";
     function leCard() {

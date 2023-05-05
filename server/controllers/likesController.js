@@ -7,11 +7,13 @@ class LikesController {
         try {
             let likeId = req.user.id;
             let { announcementId } = req.query;
+
+
             let likesCompare = await LikesAnnouncement.findAndCountAll({ where: { likeId, announcementId } });
             let addLikes;
 
 
-            if (likesCompare.count == 0) {
+            if (likesCompare.count === 0) {
                 addLikes = await LikesAnnouncement.create({ likeId, announcementId });
             } else {
                 addLikes = "Одне оголошенння не можна додати більше одного разу";
@@ -19,6 +21,7 @@ class LikesController {
 
             return res.json(addLikes);
         } catch (e) {
+
             return next(ApiError.badReq(e.message));
         }
     }
@@ -31,19 +34,20 @@ class LikesController {
             // likeId=userId
             let likeId = req.user.id;
             let likesUser = await LikesAnnouncement.findAndCountAll({ where: { likeId } });
-            let likesRows = likesUser.rows;
 
-            // забираєм всі announcementId
-            let id = [];
-            likesRows.forEach(element => {
-                id.push(element["announcementId"]);
-            });
-
-            //Шукаємо всі announcement з відповідними id
-            let announcementLikesId = await Announcement.findAndCountAll({ where: { id } })
-
-            return res.json(announcementLikesId);
-
+            return res.json(likesUser);
+            /*
+                        // забираєм всі announcementId
+                        let id = [];
+                        likesRows.forEach(element => {
+                            id.push(element["announcementId"]);
+                        });
+            
+                        //Шукаємо всі announcement з відповідними id
+                        let announcementLikesId = await Announcement.findAndCountAll({ where: { id } })
+            
+                       // return res.json(announcementLikesId);
+            */
         } catch (e) {
             return next(ApiError.badReq(e.message));
         }
