@@ -15,8 +15,8 @@ class LikesController {
 
             if (likesCompare.count === 0) {
                 addLikes = await LikesAnnouncement.create({ likeId, announcementId });
-            } else {
-                addLikes = "Одне оголошенння не можна додати більше одного разу";
+            } else if (likesCompare.count === 1) {
+                let remove = await LikesAnnouncement.destroy({ where: { likeId, announcementId } });
             }
 
             return res.json(addLikes);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../index";
 import { Button, Card, Col, Form, Image } from "react-bootstrap";
 import './css/onecard.css'
@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import heart from '../set/heart-fill.svg'
 import { useNavigate } from "react-router-dom"
 import { ANNOUNCEMENT_ROUTE } from "../utils/consts";
+import { addRemoveLike, fetchLikes } from "../http/privateAPI";
 
 
 const OneCard = observer(({ el }) => {
@@ -16,15 +17,20 @@ const OneCard = observer(({ el }) => {
 
 
     let textBtn = "Вподобати";
+    let flag = "light";
     const funcLike = () => {
-        let flag = "light";
         authStore.likes.map(like => {
-            if (like.announcementId == el.id) {
+            if (like.announcementId === el.id) {
                 flag = "danger";
                 textBtn = "Додано до  "
             }
         })
-        return flag
+    }
+    funcLike()
+
+    const addremovelikeCard = async () => {
+        await addRemoveLike(el.id);
+        await fetchLikes().then((data) => authStore.setLikes(data.rows));
     }
 
     function press(e) {
@@ -68,7 +74,8 @@ const OneCard = observer(({ el }) => {
                         <div>Місто: {cityCard}  </div>
                         <div>{el.price} грн.</div>
                         {user.isAuth ?
-                            <Button className="btnCard d-flex" variant={funcLike()}
+                            <Button className="btnCard d-flex" variant={flag}
+                                onClick={() => addremovelikeCard()}
                             >{textBtn} <img className="addLike" src={heart} /></Button>
                             :
                             <p></p>}

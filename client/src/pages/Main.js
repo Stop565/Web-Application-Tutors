@@ -23,6 +23,7 @@ const Main = observer(() => {
 
     useEffect(() => {
         fetchAnnouncement(announcement.selectedLesson.id, announcement.selectedCity.id, announcement.page, 4).then(data => {
+            //console.log(data)
             announcement.setAnnouncements(data.rows)
             announcement.setTotalCount(data.count)
         })
