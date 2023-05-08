@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { observer } from "mobx-react-lite";
 import heart from '../set/heart-fill.svg'
 import { fetchOneAnnouncement } from '../http/announcementAPI';
+import { addRemoveLike, fetchLikes } from "../http/privateAPI";
 
 
 
@@ -21,17 +22,23 @@ const AnnouncementPage = observer(() => {
     }, [])
 
 
+    const addremovelikeCard = async () => {
+        await addRemoveLike(oneAnnouncement.id);
+        await fetchLikes().then((data) => authStore.setLikes(data.rows));
+    }
+
+
     let textBtn = "Вподобати";
+    let flag = "light";
     const funcLike = () => {
-        let flag = "light";
         authStore.likes.map(like => {
             if (like.announcementId == oneAnnouncement.id) {
                 flag = "danger";
                 textBtn = "Додано до  "
             }
         })
-        return flag
     }
+    funcLike()
 
 
     let lessonCard = "";
@@ -50,7 +57,7 @@ const AnnouncementPage = observer(() => {
     }
     ciCard();
 
-
+    console.log("render")
 
 
     return (
@@ -69,7 +76,8 @@ const AnnouncementPage = observer(() => {
                         <h5>Місто:  {cityCard} </h5>
                         <h3>Ціна: {oneAnnouncement.price} грн.</h3>
                         {user.isAuth ?
-                            <Button className="btnCard m-auto" variant={funcLike()}
+                            <Button className="btnCard m-auto" variant={flag}
+                                onClick={() => addremovelikeCard()}
                             >{textBtn}  <img className="addLike" src={heart} /></Button>
                             :
                             <p></p>}

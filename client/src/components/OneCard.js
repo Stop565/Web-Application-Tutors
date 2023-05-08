@@ -33,6 +33,8 @@ const OneCard = observer(({ el }) => {
         await fetchLikes().then((data) => authStore.setLikes(data.rows));
     }
 
+    console.log(el.id)
+
     function press(e) {
         // інформація про подію
         //console.log(e.target.className);
