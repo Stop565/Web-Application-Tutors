@@ -32,7 +32,7 @@ const Main = observer(() => {
 
 
     return (
-        <Container>
+        <Container className="containerMain">
             <Form className="mt-4 row">
                 <Col md={3} className="mb-3">
                     <LessonBar />

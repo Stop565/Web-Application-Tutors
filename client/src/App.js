@@ -5,6 +5,9 @@ import NavBar from "./components/NavBar";
 import { observer } from "mobx-react-lite";
 import { check } from "./http/userAPI";
 import { Context } from "./index";
+import FooterComponent from "./components/FooterComponent";
+
+import './components/css/comm.css'
 
 
 
@@ -25,6 +28,7 @@ const App = observer(() => {
     <BrowserRouter>
       <NavBar />
       <AppRouter />
+      <FooterComponent />
     </BrowserRouter>
   );
 });

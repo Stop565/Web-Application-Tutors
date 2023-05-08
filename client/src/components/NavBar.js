@@ -25,7 +25,7 @@ const NavBar = observer(() => {
     }
 
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" className="navbar">
             <Container>
                 <Nav onClick={() => navigate("/")} style={{ color: 'white' }} >
                     Tutors

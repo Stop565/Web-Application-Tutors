@@ -1,11 +1,17 @@
 import React from "react";
 
-const AdminPage = () => {
+
+
+const FooterComponent1 = () => {
     return (
-        <div>
-            AdminPage
-        </div>
+        <footer class="footer bg-light text-center text-lg-start">
+
+            <div class="footerDiv text-center p-3" >
+                2023
+            </div>
+
+        </footer >
     )
 }
 
-export default AdminPage;
+export default FooterComponent1;
