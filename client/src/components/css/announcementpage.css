@@ -1,0 +1,12 @@
+.pageImg{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.briefinfo{
+    overflow-y: scroll;
+}
+
+.cardAnnPage{
+    --bs-card-border-width: 0px;
+}

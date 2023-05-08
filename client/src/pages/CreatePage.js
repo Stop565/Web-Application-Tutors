@@ -16,6 +16,7 @@ const CreatePage = observer(() => {
     const [price, setPrice] = useState(0)
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
+    const [briefinfo, setBriefinfo] = useState('')
 
 
     const navigate = useNavigate();
@@ -44,6 +45,7 @@ const CreatePage = observer(() => {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('price', `${price}`)
+        formData.append('briefinfo', briefinfo)
         formData.append('img', file)
         formData.append('lessonId', announcement.selectedLesson.id)
         formData.append('cityId', announcement.selectedCity.id)
@@ -104,9 +106,17 @@ const CreatePage = observer(() => {
                         onChange={selectFile}
                     />
                     <hr />
+                    <Form.Control
+                        value={briefinfo}
+                        onChange={e => setBriefinfo(e.target.value)}
+                        className="mt-3"
+                        placeholder="Короткий опис..."
+                    />
                     <Button
                         variant={"outline-dark"}
                         onClick={addInfo}
+                        className="mt-3"
+
                     >
                         Додати нову інформацію
                     </Button>

@@ -36,6 +36,7 @@ const Announcement = sequelize.define('announcement',
         id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
         name: { type: DataTypes.STRING, unique: false, allowNull: false },
         price: { type: DataTypes.INTEGER, allowNull: false },
+        briefinfo: { type: DataTypes.STRING, unique: false, allowNull: false },
         img: { type: DataTypes.STRING, allowNull: false },
     },
     {

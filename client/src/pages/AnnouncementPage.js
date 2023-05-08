@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Context } from "../index";
-import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useParams } from 'react-router-dom'
 import { observer } from "mobx-react-lite";
 import heart from '../set/heart-fill.svg'
 import { fetchOneAnnouncement } from '../http/announcementAPI';
 import { addRemoveLike, fetchLikes } from "../http/privateAPI";
-
+import '../components/css/announcementpage.css'
 
 
 const AnnouncementPage = observer(() => {
@@ -27,6 +27,8 @@ const AnnouncementPage = observer(() => {
         await fetchLikes().then((data) => authStore.setLikes(data.rows));
     }
 
+
+    console.log(oneAnnouncement);
 
     let textBtn = "Вподобати";
     let flag = "light";
@@ -57,19 +59,32 @@ const AnnouncementPage = observer(() => {
     }
     ciCard();
 
-    console.log("render")
+
 
 
     return (
         <Container className="mt-5" >
-            <Row>
+            <Row className='d-flex' style={{ border: '5px solid lightgray' }}>
                 <Col md={4}>
-                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL + oneAnnouncement.img} />
+                    <Card
+                        className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
+                        style={{ width: 300, height: 300, }}
+                    >
+                        <Image className='pageImg' src={process.env.REACT_APP_API_URL + oneAnnouncement.img} />
+                    </Card>
                 </Col>
                 <Col md={4}>
                     <Card
-                        className="d-flex flex-column align-items-center justify-content-around"
-                        style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}
+                        className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
+                        style={{ width: 300, height: 300, fontSize: 20, }}
+                    >
+                        <Form className='briefinfo'> {oneAnnouncement.briefinfo}</Form>
+                    </Card>
+                </Col>
+                <Col md={4}>
+                    <Card
+                        className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
+                        style={{ width: 300, height: 300, fontSize: 32, }}
                     >
                         <h2>{oneAnnouncement.name}</h2>
                         <h5>{lessonCard}</h5>
