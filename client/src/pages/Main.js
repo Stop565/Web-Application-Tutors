@@ -22,7 +22,11 @@ const Main = observer(() => {
 
 
     useEffect(() => {
-        fetchAnnouncement(announcement.selectedLesson.id, announcement.selectedCity.id, announcement.page, 4).then(data => {
+        fetchAnnouncement(announcement.selectedLesson.id,
+            announcement.selectedCity.id,
+            announcement.page,
+            announcement.limit
+        ).then(data => {
             //console.log(data)
             announcement.setAnnouncements(data.rows)
             announcement.setTotalCount(data.count)
@@ -32,7 +36,7 @@ const Main = observer(() => {
 
 
     return (
-        <Container className="containerMain">
+        <Container >
             <Form className="mt-4 row">
                 <Col md={3} className="mb-3">
                     <LessonBar />

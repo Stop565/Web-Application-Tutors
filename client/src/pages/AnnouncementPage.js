@@ -4,7 +4,7 @@ import { Button, Card, Col, Container, Form, Image, Row } from "react-bootstrap"
 import { useParams } from 'react-router-dom'
 import { observer } from "mobx-react-lite";
 import heart from '../set/heart-fill.svg'
-import { fetchOneAnnouncement } from '../http/announcementAPI';
+import { fetchOneAnnouncement, fetchLessons, fetchCities } from '../http/announcementAPI';
 import { addRemoveLike, fetchLikes } from "../http/privateAPI";
 import '../components/css/announcementpage.css'
 
@@ -19,6 +19,8 @@ const AnnouncementPage = observer(() => {
 
     useEffect(() => {
         fetchOneAnnouncement(id).then((data) => setOneAnnouncement(data))
+        fetchLessons().then((data) => announcement.setLessons(data));
+        fetchCities().then((data) => announcement.setCities(data));
     }, [])
 
 
