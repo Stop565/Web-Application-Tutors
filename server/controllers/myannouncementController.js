@@ -20,6 +20,21 @@ class MyAnnouncementController {
             next(ApiError.badReq(e.message));
         }
     }
+
+
+    async deleteMyOneAnnouncement(req, res, next) {
+        try {
+            let userId = req.user.id;
+            let { announcementId } = req.query;
+
+            if (userId === )
+
+
+
+        } catch (e) {
+            next(ApiError.badReq(e.message));
+        }
+    }
 }
 
 export default new MyAnnouncementController();

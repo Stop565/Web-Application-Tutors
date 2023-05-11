@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../index";
-import { Button, Card, Col, Form, Image } from "react-bootstrap";
+import { Button, Card, Col, Form, Image, Row } from "react-bootstrap";
 import './css/onecard.css'
 import { observer } from "mobx-react-lite";
 import heart from '../set/heart-fill.svg'
@@ -9,7 +9,7 @@ import { ANNOUNCEMENT_ROUTE } from "../utils/consts";
 import { addRemoveLike, fetchLikes } from "../http/privateAPI";
 
 
-const OneCard = observer(({ el }) => {
+const MyOneCard = observer(({ el }) => {
     const { user } = useContext(Context);
     const { authStore } = useContext(Context);
     const { announcement } = useContext(Context);
@@ -37,7 +37,8 @@ const OneCard = observer(({ el }) => {
 
     function press(e) {
         // інформація про подію
-        //console.log(e.target.className);
+        console.log(e.target.className);
+        if (e.target.className === "btnCard d-flex btn btn-secondary") return;
         if (e.target.className === "btnCard d-flex btn btn-danger") return;
         if (e.target.className === "btnCard d-flex btn btn-light") return;
         if (e.target.className === "addLike") return;
@@ -62,6 +63,11 @@ const OneCard = observer(({ el }) => {
     ciCard();
 
 
+    const delAnnouncement = async () => {
+        const confirmDel = window.confirm("Ви дійсно хочете повністю видалити оголошення?")
+
+    }
+
 
     return (
         <Col md={6} className="mt-4 "   >
@@ -75,12 +81,14 @@ const OneCard = observer(({ el }) => {
                         <div>{lessonCard}</div>
                         <div>Місто: {cityCard}  </div>
                         <div>{el.price} грн.</div>
-                        {user.isAuth ?
+                        <Form className="row" >
                             <Button className="btnCard d-flex" variant={flag}
                                 onClick={() => addremovelikeCard()}
                             >{textBtn} <img className="addLike" src={heart} /></Button>
-                            :
-                            <p></p>}
+                            <Button className="btnCard d-flex" variant="secondary"
+                                onClick={() => delAnnouncement()}
+                            >Видалити</Button>
+                        </Form>
                     </Col>
                 </Form>
             </Card>
@@ -89,4 +97,4 @@ const OneCard = observer(({ el }) => {
     )
 })
 
-export default OneCard;
+export default MyOneCard;

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { Card, Container, Form } from "react-bootstrap";
 import { Context } from "..";
-import OneCard from "../components/OneCard";
+import MyOneCard from "../components/MyOneCard";
 import { fetchMyAnnouncement } from "../http/privateAPI";
 
 
@@ -23,7 +23,7 @@ const MyAnnouncement = observer(() => {
             <Form className="d-flex row">
                 {authStore.myannounce.map((el) => {
 
-                    return <OneCard key={el.id} el={el} />
+                    return <MyOneCard key={el.id} el={el} />
                 })}
             </Form>
 
