@@ -14,7 +14,7 @@ const MyAnnouncement = observer(() => {
     //console.log(user.user.id);
 
     useEffect(() => {
-        fetchMyAnnouncement().then((data) => authStore.setLMyannounce(data.rows));
+        fetchMyAnnouncement().then((data) => authStore.setMyannounce(data.rows));
     }, [])
 
 

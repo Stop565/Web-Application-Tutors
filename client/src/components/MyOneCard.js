@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import heart from '../set/heart-fill.svg'
 import { useNavigate } from "react-router-dom"
 import { ANNOUNCEMENT_ROUTE } from "../utils/consts";
-import { addRemoveLike, fetchLikes } from "../http/privateAPI";
+import { addRemoveLike, fetchLikes, deleteOneMyAnnouncement, fetchMyAnnouncement } from "../http/privateAPI";
 
 
 const MyOneCard = observer(({ el }) => {
@@ -37,7 +37,7 @@ const MyOneCard = observer(({ el }) => {
 
     function press(e) {
         // інформація про подію
-        console.log(e.target.className);
+        //console.log(e.target.className);
         if (e.target.className === "btnCard d-flex btn btn-secondary") return;
         if (e.target.className === "btnCard d-flex btn btn-danger") return;
         if (e.target.className === "btnCard d-flex btn btn-light") return;
@@ -65,7 +65,11 @@ const MyOneCard = observer(({ el }) => {
 
     const delAnnouncement = async () => {
         const confirmDel = window.confirm("Ви дійсно хочете повністю видалити оголошення?")
-
+        console.log(confirmDel);
+        if (confirmDel) {
+            await deleteOneMyAnnouncement(el.id);
+            await fetchMyAnnouncement().then((data) => authStore.setMyannounce(data.rows));
+        }
     }
 
 

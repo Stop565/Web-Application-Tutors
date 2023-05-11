@@ -12,7 +12,7 @@ export default class AuthStore {
         this._likes = likes;
     }
 
-    setLMyannounce(announce) {
+    setMyannounce(announce) {
         this._myannounce = announce;
     }
 
