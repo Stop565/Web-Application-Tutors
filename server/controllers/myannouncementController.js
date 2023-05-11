@@ -1,5 +1,6 @@
 import * as uuid from 'uuid';
 import * as path from 'path';
+import fs from "fs";
 import { Announcement, AnnouncementInfo, LikesAnnouncement } from '../models/models.js';
 import ApiError from '../error/ApiError.js';
 
@@ -35,6 +36,10 @@ class MyAnnouncementController {
                 const removeLike = await LikesAnnouncement.destroy({ where: { announcementId } });
                 const infoDel = await AnnouncementInfo.destroy({ where: { announcementId } });
                 const announcementDel = await Announcement.destroy({ where: { id } });
+
+                fs.unlink(path.resolve('static', myOneannouncement.img), (err) => {
+                    if (err) return res.json(err);
+                })
             }
 
 
