@@ -13,6 +13,7 @@ export default class AnnouncementStore {
         this._page = 1
         this._totalCount = 0
         this._limit = 4
+        this._inputSearch = ''
         makeAutoObservable(this);
     }
 
@@ -42,6 +43,9 @@ export default class AnnouncementStore {
     }
     setTotalCount(count) {
         this._totalCount = count
+    }
+    setInputSearch(text) {
+        this._inputSearch = text
     }
 
 
@@ -73,4 +77,8 @@ export default class AnnouncementStore {
     get limit() {
         return this._limit
     }
+    get inputSearch() {
+        return this._inputSearch
+    }
+
 }

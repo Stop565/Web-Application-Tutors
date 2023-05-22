@@ -16,6 +16,7 @@ const AnnouncementList = observer(() => {
     }, [])
 
 
+
     return (
         <Row className="d-flex ">
             {announcement.announcements.map((el) => {

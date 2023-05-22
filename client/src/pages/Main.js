@@ -34,6 +34,13 @@ const Main = observer(() => {
     }, [announcement.page, announcement.selectedLesson, announcement.selectedCity,])
 
 
+    useEffect(() => {
+        console.log("ofofog");
+        if (true) {
+
+        }
+    }, [announcement.inputSearch])
+
 
     return (
         <Container >

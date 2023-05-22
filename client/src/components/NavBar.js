@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../index";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -15,6 +15,8 @@ import { MAIN_ROUTE } from "../utils/consts";
 
 const NavBar = observer(() => {
     const { user } = useContext(Context);
+    const { announcement } = useContext(Context);
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -26,6 +28,7 @@ const NavBar = observer(() => {
         localStorage.removeItem('token');
         navigate("/");
     }
+
 
     return (
         <Navbar bg="dark" variant="dark" className="navbar">
@@ -55,15 +58,16 @@ const NavBar = observer(() => {
                         <Navbar.Collapse   >
                             <Button className="btn" variant="outline-light" onClick={() => navigate("/myannouncement")} >Мої оголошення</Button>
                             <Button className="btn" variant={"outline-light"} onClick={() => navigate("/likes")}>Likes</Button>
-                            <Button className="me-4" variant={"outline-light"} onClick={() => navigate("/create")} >Створити оголшення</Button>
+                            <Button className="me-2" variant={"outline-light"} onClick={() => navigate("/create")} >Створити оголшення</Button>
                             {isMainPage &&
                                 <Form className="d-flex ">
                                     <Form.Control
+                                        style={{ width: 300 }}
                                         type="search"
                                         placeholder="Я шукаю..."
                                         aria-label="Search"
+                                        onChange={(event) => announcement.setInputSearch(event.target.value)}
                                     />
-                                    <Button variant="outline-success">Знайти</Button>
                                 </Form>
                             }
                         </Navbar.Collapse>
