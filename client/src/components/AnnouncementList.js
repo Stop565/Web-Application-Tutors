@@ -15,19 +15,39 @@ const AnnouncementList = observer(() => {
         fetchLikes().then((data) => authStore.setLikes(data.rows))
     }, [])
 
-
+    useEffect(() => {
+        if (announcement.inputSearch.length > 0) {
+            const array = announcement.announcements.filter(function (el) {
+                return el.name.toLowerCase().includes(announcement.inputSearch.toLowerCase())
+            })
+            console.log(array);
+            announcement.setSearchAnnouncements(array);
+        }
+    }, [announcement.inputSearch])
 
     return (
-        <Row className="d-flex ">
-            {announcement.announcements.map((el) => {
-                return <OneCard key={el.id} el={el} />
+        <>
+            {
+                announcement.inputSearch === "" &&
+                <Row className="d-flex ">
+                    {announcement.announcements.map((el) => {
+                        return <OneCard key={el.id} el={el} />
+                    }
+
+                    )}
+                </Row>
             }
+            {
+                announcement.inputSearch &&
+                <Row className="d-flex ">
+                    {announcement.searchAnnouncements.map((el) => {
+                        return <OneCard key={el.id} el={el} />
+                    }
 
-            )}
-
-
-        </Row>
-
+                    )}
+                </Row>
+            }
+        </>
     )
 })
 

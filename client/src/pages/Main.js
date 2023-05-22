@@ -35,9 +35,12 @@ const Main = observer(() => {
 
 
     useEffect(() => {
-        console.log("ofofog");
-        if (true) {
-
+        if (announcement.inputSearch.length > 0) {
+            const array = announcement.announcements.filter(function (el) {
+                return el.name.toLowerCase().includes(announcement.inputSearch.toLowerCase())
+            })
+            //console.log(array);
+            announcement.setSearchAnnouncements(array);
         }
     }, [announcement.inputSearch])
 
