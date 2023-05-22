@@ -47,7 +47,6 @@ const Main = observer(() => {
                     <Pages />
                 </Col>
             </Form>
-
         </Container>
     )
 });

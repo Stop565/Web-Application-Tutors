@@ -6,3 +6,5 @@ export const LIKES_ROUTE = '/likes';
 export const CREATE_ROUTE = '/create';
 export const ANNOUNCEMENT_ROUTE = '/announcement';
 export const MY_ANNOUNCEMENT = '/myannouncement';
+export const CREATE_CITY_ROUTE = '/city';
+export const CREATE_LESSON_ROUTE = '/lesson';

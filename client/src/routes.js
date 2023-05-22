@@ -53,5 +53,9 @@ export const adminRoutes = [
     {
         path: CREATE_ROUTE,
         Component: <CreatePage />
+    },
+    {
+        path: MY_ANNOUNCEMENT,
+        Component: <MyAnnouncement />
     }
 ]

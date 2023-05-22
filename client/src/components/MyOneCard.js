@@ -85,7 +85,7 @@ const MyOneCard = observer(({ el }) => {
                         <div>{lessonCard}</div>
                         <div>Місто: {cityCard}  </div>
                         <div>{el.price} грн.</div>
-                        <Form className="row" >
+                        <Form className="row " >
                             <Button className="btnCard d-flex" variant={flag}
                                 onClick={() => addremovelikeCard()}
                             >{textBtn} <img className="addLike" src={heart} /></Button>

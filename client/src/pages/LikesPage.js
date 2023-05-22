@@ -17,6 +17,7 @@ const LikesPage = observer(() => {
         fetchLikes().then((data) => authStore.setLikes(data.rows))
     }, [])
 
+
     console.log(announcement.announcements)
 
     return (
