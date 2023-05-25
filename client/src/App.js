@@ -28,7 +28,6 @@ const App = observer(() => {
     <BrowserRouter>
       <NavBar />
       <AppRouter />
-      <FooterComponent />
     </BrowserRouter>
   );
 });

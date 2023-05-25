@@ -7,6 +7,8 @@ import heart from '../set/heart-fill.svg'
 import { fetchOneAnnouncement, fetchLessons, fetchCities } from '../http/announcementAPI';
 import { addRemoveLike, fetchLikes } from "../http/privateAPI";
 import '../components/css/announcementpage.css'
+import Map from '../components/Maps';
+import FooterComponent from '../components/FooterComponent';
 
 
 const AnnouncementPage = observer(() => {
@@ -65,52 +67,59 @@ const AnnouncementPage = observer(() => {
 
 
     return (
-        <Container className="mt-5" >
-            <Row className='d-flex' style={{ border: '5px solid lightgray' }}>
-                <Col md={4}>
-                    <Card
-                        className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
-                        style={{ width: 300, height: 300, }}
-                    >
-                        <Image className='pageImg' src={process.env.REACT_APP_API_URL + oneAnnouncement.img} />
-                    </Card>
-                </Col>
-                <Col md={4}>
-                    <Card
-                        className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
-                        style={{ width: 300, height: 300, fontSize: 20, }}
-                    >
-                        <Form className='briefinfo'> {oneAnnouncement.briefinfo}</Form>
-                    </Card>
-                </Col>
-                <Col md={4}>
-                    <Card
-                        className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
-                        style={{ width: 300, height: 300, fontSize: 32, }}
-                    >
-                        <h2>{oneAnnouncement.name}</h2>
-                        <h5>{lessonCard}</h5>
-                        <h5>Місто:  {cityCard} </h5>
-                        <h3>Ціна: {oneAnnouncement.price} грн.</h3>
-                        {user.isAuth ?
-                            <Button className="btnCard m-auto" variant={flag}
-                                onClick={() => addremovelikeCard()}
-                            >{textBtn}  <img className="addLike" src={heart} /></Button>
-                            :
-                            <p></p>}
-                    </Card>
-                </Col>
-            </Row>
-            <Row className="d-flex flex-column m-3">
-                <h1>Додаткова інформація</h1>
-                {oneAnnouncement.info.map((info, index) =>
-                    <Row key={info.id} style={{ background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10 }}>
-                        {info.title}: {info.description}
-                    </Row>
-                )}
-            </Row>
+        <>
+            <Container className="mt-5" >
+                <Row className='d-flex' style={{ border: '5px solid lightgray' }}>
+                    <Col md={4}>
+                        <Card
+                            className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
+                            style={{ width: 300, height: 300, }}
+                        >
+                            <Image className='pageImg' src={process.env.REACT_APP_API_URL + oneAnnouncement.img} />
+                        </Card>
+                    </Col>
+                    <Col md={4}>
+                        <Card
+                            className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
+                            style={{ width: 300, height: 300, fontSize: 20, }}
+                        >
+                            <Form className='briefinfo'> {oneAnnouncement.briefinfo}</Form>
+                        </Card>
+                    </Col>
+                    <Col md={4}>
+                        <Card
+                            className="cardAnnPage d-flex flex-column align-items-center justify-content-around"
+                            style={{ width: 300, height: 300, fontSize: 32, }}
+                        >
+                            <h2>{oneAnnouncement.name}</h2>
+                            <h5>{lessonCard}</h5>
+                            <h5>Місто:  {cityCard} </h5>
+                            <h3>Ціна: {oneAnnouncement.price} грн.</h3>
+                            {user.isAuth ?
+                                <Button className="btnCard m-auto" variant={flag}
+                                    onClick={() => addremovelikeCard()}
+                                >{textBtn}  <img className="addLike" src={heart} /></Button>
+                                :
+                                <p></p>}
+                        </Card>
+                    </Col>
+                </Row>
+                <Row className="d-flex flex-column m-3">
+                    <h1>Додаткова інформація</h1>
+                    {oneAnnouncement.info.map((info, index) =>
+                        <Row key={info.id} style={{ background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10 }}>
+                            {info.title}: {info.description}
+                        </Row>
+                    )}
+                </Row>
 
-        </Container>
+                <Row>
+                    <Map />
+                </Row>
+            </Container>
+            <FooterComponent />
+        </>
+
     );
 })
 

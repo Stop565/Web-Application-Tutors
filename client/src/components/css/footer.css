@@ -1,9 +1,11 @@
 .footer{
-    
-
+    background-color : rgb(33, 37, 41);
+    height: 55px; 
+    align-items: center;
+    justify-content: center;
 }
 
 .footerDiv{
-    background-color : rgb(33, 37, 41);
-    color: white;
+    text-align: center;
+    color: rgb(255, 255, 255);
 }
