@@ -9,14 +9,16 @@ import LocationMarker from "./MarkerCreateAnnouncement";
 
 
 const Maps = ({ bool, size }) => {
+
     const position = [50.505, 30]
     const customIcon = new Icon({
         iconUrl: require("../set/position.png"),
         iconSize: [40, 40]
     })
 
-    const MapsSize = size;
-    console.log(size)
+    let MapsSize = size;
+
+
     return (
         <MapContainer style={MapsSize} center={position} zoom={8} scrollWheelZoom={false} >
             <TileLayer

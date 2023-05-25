@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useContext } from "react";
+import { Context } from "../index";
 import { Card } from "react-bootstrap";
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import "./css/maps.css"
 import { Icon } from "leaflet";
+import { observer } from "mobx-react-lite";
 
 
-const LocationMarker = () => {
-    const [position, setPosition] = useState(null);
+const LocationMarker = observer(() => {
+    //const [position, setPosition] = useState(null);
+    const { authStore } = useContext(Context);
 
     const customIcon = new Icon({
         iconUrl: require("../set/position.png"),
@@ -21,16 +24,16 @@ const LocationMarker = () => {
         click(e) {
             map.locate();
             //console.log(e.latlng);
-            setPosition(e.latlng);
+            authStore.setMyposition(e.latlng);
         },
     })
 
-    return position === null ? null : (
-        <Marker position={position} icon={customIcon}>
+    return authStore.myposition.length === 0 ? null : (
+        <Marker position={authStore.myposition} icon={customIcon}>
             <Popup>Ви знаходитесь тут?</Popup>
         </Marker>
     )
-}
+})
 
 
 

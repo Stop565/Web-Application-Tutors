@@ -19,7 +19,8 @@ const CreatePage = observer(() => {
     const [info, setInfo] = useState([])
     const [briefinfo, setBriefinfo] = useState('')
     const [checkAddposition, setCheckAddposition] = useState(false)
-    const [position, setPosition] = useState([])
+
+    const { authStore } = useContext(Context);
 
 
     const navigate = useNavigate();
@@ -53,8 +54,11 @@ const CreatePage = observer(() => {
         formData.append('lessonId', announcement.selectedLesson.id)
         formData.append('cityId', announcement.selectedCity.id)
         formData.append('info', JSON.stringify(info))
+        if (checkAddposition) {
+            formData.append('position', JSON.stringify(authStore.myposition))
+        } else { formData.append('position', JSON.stringify(false)) }
         //console.log(formData)
-        //createAnnouncement(formData).then(() => navigate("/"))
+        createAnnouncement(formData).then(() => navigate("/"))
     }
 
     return (
