@@ -114,7 +114,7 @@ const AnnouncementPage = observer(() => {
                 </Row>
 
                 <Row>
-                    <Maps />
+                    <Maps bool={true} />
                 </Row>
             </Container>
             <FooterComponent />
