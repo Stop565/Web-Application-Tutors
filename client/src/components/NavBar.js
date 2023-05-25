@@ -41,6 +41,17 @@ const NavBar = observer(() => {
 
                 {
                     !user.isAuth && <>
+                        {isMainPage &&
+                            <Form className="d-flex ">
+                                <Form.Control
+                                    style={{ width: 300 }}
+                                    type="search"
+                                    placeholder="Я шукаю..."
+                                    aria-label="Search"
+                                    onChange={(event) => announcement.setInputSearch(event.target.value)}
+                                />
+                            </Form>
+                        }
 
                         <NavDropdown className="btn" style={{ color: 'white' }} title="Авторизація" id="collasible-nav-dropdown">
                             <NavDropdown.Item onClick={() => navigate("/login")}>
@@ -85,20 +96,18 @@ const NavBar = observer(() => {
                                     Оголошення
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={() => navigate("/admin")}>
-                                    Предмет
-                                </NavDropdown.Item>
-                                <NavDropdown.Item onClick={() => navigate("/admin")}>
-                                    Місто
+                                    Місто/Предмет
                                 </NavDropdown.Item>
                             </NavDropdown>
                             {isMainPage &&
                                 <Form className="d-flex ">
                                     <Form.Control
+                                        style={{ width: 300 }}
                                         type="search"
                                         placeholder="Я шукаю..."
                                         aria-label="Search"
+                                        onChange={(event) => announcement.setInputSearch(event.target.value)}
                                     />
-                                    <Button variant="outline-success">Знайти</Button>
                                 </Form>
                             }
                         </Navbar.Collapse>

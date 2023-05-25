@@ -26,3 +26,13 @@ export const deleteOneMyAnnouncement = async (id) => {
     const { data } = await $authHost.delete('api/myannouncement', { params: { id } })
     return data
 }
+
+export const createCity = async (city) => {
+    const { data } = await $authHost.post('api/city', city)
+    return data
+}
+
+export const createLesson = async (lesson) => {
+    const { data } = await $authHost.post('api/lesson', lesson)
+    return data
+}
