@@ -114,7 +114,7 @@ const AnnouncementPage = observer(() => {
                 </Row>
 
                 <Row>
-                    <Maps bool={true} />
+                    <Maps bool={true} size={{ height: "400px", width: "700px" }} />
                 </Row>
             </Container>
             <FooterComponent />

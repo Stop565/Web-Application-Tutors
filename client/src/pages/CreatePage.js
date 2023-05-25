@@ -6,6 +6,7 @@ import { Context } from "../index";
 import { observer } from "mobx-react-lite";
 import { createAnnouncement } from '../http/privateAPI';
 import { useNavigate } from "react-router-dom";
+import Maps from '../components/Maps';
 
 
 
@@ -17,6 +18,8 @@ const CreatePage = observer(() => {
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
     const [briefinfo, setBriefinfo] = useState('')
+    const [checkAddposition, setCheckAddposition] = useState(false)
+    const [position, setPosition] = useState([])
 
 
     const navigate = useNavigate();
@@ -146,6 +149,20 @@ const CreatePage = observer(() => {
                             </Col>
                         </Row>
                     )}
+                </Form>
+                <hr />
+                <Form>
+                    <Button
+                        variant={"outline-dark"}
+                        onClick={() => setCheckAddposition(!checkAddposition)}
+                        className="mt-3"
+
+                    >
+                        Додати Ваше місцезнаходження
+                    </Button>
+                    {checkAddposition &&
+                        <Maps bool={false} size={{ height: "400px", width: "500px" }} />
+                    }
                 </Form>
                 <Form className="mt-4">
                     <Button variant="outline-danger" >Закрити</Button>

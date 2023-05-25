@@ -8,29 +8,30 @@ import { Icon } from "leaflet";
 import LocationMarker from "./MarkerCreateAnnouncement";
 
 
-const Maps = ({ bool }) => {
+const Maps = ({ bool, size }) => {
     const position = [50.505, 30]
     const customIcon = new Icon({
         iconUrl: require("../set/position.png"),
         iconSize: [40, 40]
     })
 
-
-
+    const MapsSize = size;
+    console.log(size)
     return (
-        <MapContainer center={position} zoom={8} scrollWheelZoom={false} >
+        <MapContainer style={MapsSize} center={position} zoom={8} scrollWheelZoom={false} >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {bool ?
-                <Marker position={position} icon={customIcon}>
-                    <Popup>Я тут</Popup>
-                </Marker>
-                :
-                <LocationMarker />
+            {
+                bool ?
+                    <Marker position={position} icon={customIcon}>
+                        <Popup>Я тут</Popup>
+                    </Marker>
+                    :
+                    <LocationMarker />
             }
-        </MapContainer>
+        </MapContainer >
 
     )
 }
