@@ -7,8 +7,8 @@ import heart from '../set/heart-fill.svg'
 import { fetchOneAnnouncement, fetchLessons, fetchCities } from '../http/announcementAPI';
 import { addRemoveLike, fetchLikes } from "../http/privateAPI";
 import '../components/css/announcementpage.css'
-import Map from '../components/Maps';
 import FooterComponent from '../components/FooterComponent';
+import Maps from '../components/Maps';
 
 
 const AnnouncementPage = observer(() => {
@@ -114,7 +114,7 @@ const AnnouncementPage = observer(() => {
                 </Row>
 
                 <Row>
-                    <Map />
+                    <Maps />
                 </Row>
             </Container>
             <FooterComponent />
