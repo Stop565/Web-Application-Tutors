@@ -32,7 +32,7 @@ const AnnouncementPage = observer(() => {
     }
 
 
-    console.log(oneAnnouncement);
+
 
     let textBtn = "Вподобати";
     let flag = "light";
@@ -63,8 +63,10 @@ const AnnouncementPage = observer(() => {
     }
     ciCard();
 
+    console.log(oneAnnouncement)
 
 
+    //let position = JSON.parse(oneAnnouncement.position)
 
     return (
         <>

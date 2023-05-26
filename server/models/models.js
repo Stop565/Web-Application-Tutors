@@ -38,6 +38,7 @@ const Announcement = sequelize.define('announcement',
         price: { type: DataTypes.INTEGER, allowNull: false },
         briefinfo: { type: DataTypes.STRING, unique: false, allowNull: false },
         img: { type: DataTypes.STRING, allowNull: false },
+        position: { type: DataTypes.STRING, unique: false, allowNull: false }
     },
     {
         timestamps: false,

@@ -8,13 +8,13 @@ import ApiError from '../error/ApiError.js';
 class AnnouncementController {
     async create(req, res, next) {
         try {
-            let { name, price, cityId, lessonId, briefinfo, info } = req.body;
+            let { name, price, cityId, lessonId, position, briefinfo, info } = req.body;
             let userId = req.user.id;
             const { img } = req.files;
             let fileName = uuid.v4() + '.jpg';
             img.mv(path.resolve('static', fileName));
 
-            const announcement = await Announcement.create({ name, price, briefinfo, cityId, lessonId, userId, img: fileName });
+            const announcement = await Announcement.create({ name, price, position, cityId, lessonId, userId, briefinfo, img: fileName });
 
 
             if (info) {

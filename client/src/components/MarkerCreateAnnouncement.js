@@ -23,13 +23,16 @@ const LocationMarker = observer(() => {
     const map = useMapEvents({
         click(e) {
             map.locate();
-            //console.log(e.latlng);
-            authStore.setMyposition(e.latlng);
+            //console.log(e.latlng.lat);
+            authStore.setMyposition({ "lat": e.latlng.lat, "lng": e.latlng.lng });
         },
     })
 
-    return authStore.myposition.length === 0 ? null : (
-        <Marker position={authStore.myposition} icon={customIcon}>
+    let position = { "lat": authStore.myposition["lat"], "lng": authStore.myposition["lng"] }
+
+    console.log(position);
+    return (
+        <Marker position={position} icon={customIcon}>
             <Popup>Ви знаходитесь тут?</Popup>
         </Marker>
     )

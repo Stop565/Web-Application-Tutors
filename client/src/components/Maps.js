@@ -6,17 +6,27 @@ import "leaflet/dist/leaflet.css";
 import "./css/maps.css"
 import { Icon } from "leaflet";
 import LocationMarker from "./MarkerCreateAnnouncement";
+import { observer } from "mobx-react-lite";
 
 
-const Maps = ({ bool, size }) => {
+const Maps = observer(({ bool, size }) => {
 
-    const position = [50.505, 30]
+    //const key = JSON.parse(positionStr)
+    console.log()
+    //let k = JSON.parse(positionArr)
+    //console.log(k)
+
+    //let position = [positionObj.lat, positionObj.lng]
+    //let position = positionObj;
+
     const customIcon = new Icon({
         iconUrl: require("../set/position.png"),
         iconSize: [40, 40]
     })
 
+    const position = [50, 30]
     let MapsSize = size;
+
 
 
     return (
@@ -36,6 +46,6 @@ const Maps = ({ bool, size }) => {
         </MapContainer >
 
     )
-}
+})
 
 export default Maps;
