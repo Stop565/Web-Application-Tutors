@@ -23,7 +23,7 @@ const Maps = observer(({ bool, size, positionStr }) => {
     //console.log(position)
 
     return (
-        <MapContainer style={MapsSize} center={position} zoom={5} scrollWheelZoom={false} >
+        <MapContainer style={MapsSize} center={position} zoom={5} scrollWheelZoom={true} >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
