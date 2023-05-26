@@ -9,28 +9,21 @@ import LocationMarker from "./MarkerCreateAnnouncement";
 import { observer } from "mobx-react-lite";
 
 
-const Maps = observer(({ bool, size }) => {
-
-    //const key = JSON.parse(positionStr)
-    console.log()
-    //let k = JSON.parse(positionArr)
-    //console.log(k)
-
-    //let position = [positionObj.lat, positionObj.lng]
-    //let position = positionObj;
+const Maps = observer(({ bool, size, positionStr }) => {
 
     const customIcon = new Icon({
         iconUrl: require("../set/position.png"),
         iconSize: [40, 40]
     })
 
-    const position = [50, 30]
+    let position = [50, 30]
     let MapsSize = size;
 
-
+    if (typeof positionStr === "string") position = positionStr.split(', ')
+    //console.log(position)
 
     return (
-        <MapContainer style={MapsSize} center={position} zoom={8} scrollWheelZoom={false} >
+        <MapContainer style={MapsSize} center={position} zoom={5} scrollWheelZoom={false} >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

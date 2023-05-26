@@ -55,9 +55,9 @@ const CreatePage = observer(() => {
         formData.append('cityId', announcement.selectedCity.id)
         formData.append('info', JSON.stringify(info))
         if (checkAddposition) {
-            formData.append('position', { "0": authStore.myposition["lat"], 1: authStore.myposition["lng"] })
-        } else { formData.append('position', JSON.stringify([0, 0])) }
-        //console.log(authStore.myposition.lng)
+            formData.append('position', `${authStore.myposition[0]}, ${authStore.myposition[1]}`)
+        }
+        //console.log(authStore.myposition)
         createAnnouncement(formData).then(() => navigate("/"))
     }
 
@@ -166,7 +166,7 @@ const CreatePage = observer(() => {
                     </Button>
                     {checkAddposition &&
                         <Maps bool={false} size={{ height: "400px", width: "500px" }}
-                            positionObj={[10, 10]} />
+                            positionStr={[10, 10]} />
                     }
                 </Form>
                 <Form className="mt-4">

@@ -5,7 +5,7 @@ export default class AuthStore {
     constructor() {
         this._likes = [];
         this._myannounce = [];
-        this._myposition = { "lat": 50, "lng": 30 };
+        this._myposition = [30, 30];
         makeAutoObservable(this);
     }
 

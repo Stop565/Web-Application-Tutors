@@ -24,11 +24,11 @@ const LocationMarker = observer(() => {
         click(e) {
             map.locate();
             //console.log(e.latlng.lat);
-            authStore.setMyposition({ "lat": e.latlng.lat, "lng": e.latlng.lng });
+            authStore.setMyposition([e.latlng.lat, e.latlng.lng]);
         },
     })
 
-    let position = { "lat": authStore.myposition["lat"], "lng": authStore.myposition["lng"] }
+    let position = [authStore.myposition[0], authStore.myposition[1]]
 
     console.log(position);
     return (

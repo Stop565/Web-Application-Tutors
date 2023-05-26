@@ -63,10 +63,6 @@ const AnnouncementPage = observer(() => {
     }
     ciCard();
 
-    console.log(oneAnnouncement)
-
-
-    //let position = JSON.parse(oneAnnouncement.position)
 
     return (
         <>
@@ -116,7 +112,7 @@ const AnnouncementPage = observer(() => {
                 </Row>
 
                 <Row>
-                    <Maps bool={true} size={{ height: "400px", width: "700px" }} />
+                    <Maps bool={true} size={{ height: "400px", width: "700px" }} positionStr={oneAnnouncement.position} />
                 </Row>
             </Container>
             <FooterComponent />
