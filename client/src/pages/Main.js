@@ -15,7 +15,7 @@ const Main = observer(() => {
     useEffect(() => {
         fetchLessons().then((data) => announcement.setLessons(data));
         fetchCities().then((data) => announcement.setCities(data));
-        fetchAnnouncement(null, null, 1, 4).then((data) => {
+        fetchAnnouncement(null, null, 1, 8).then((data) => {
             announcement.setAnnouncements(data.rows);
             announcement.setTotalCount(data.count);
         });

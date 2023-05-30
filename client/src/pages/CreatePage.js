@@ -61,7 +61,8 @@ const CreatePage = observer(() => {
             formData.append('position', `0, 0`)
         }
         //console.log(authStore.myposition)
-        createAnnouncement(formData).then(() => navigate("/"))
+        createAnnouncement(formData)
+        //.then(() => navigate("/"))
     }
 
     return (
