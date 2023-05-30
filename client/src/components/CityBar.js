@@ -17,7 +17,7 @@ const CityBar = observer(() => {
         <Form className="d-flex" >
             {announcement.cities.map((el) =>
                 <Card key={el.id}
-                    className="p-3"
+                    className="m-1 p-2"
                     style={{ cursor: 'pointer' }}
                     border={el.id === announcement.selectedCity.id ? 'danger' : 'light'}
 
