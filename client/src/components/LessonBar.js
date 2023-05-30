@@ -24,10 +24,7 @@ const LessonBar = observer(() => {
                     {el.name}
                 </ListGroup.Item>
             )}
-
-
         </ListGroup>
-
     )
 });
 
