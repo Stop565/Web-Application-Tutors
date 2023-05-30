@@ -7,6 +7,7 @@ import AnnouncementList from "../components/AnnouncementList";
 import { observer } from "mobx-react-lite";
 import { fetchAnnouncement, fetchCities, fetchLessons } from "../http/announcementAPI";
 import Pages from "../components/Pages";
+import FooterComponent from "../components/FooterComponent";
 
 const Main = observer(() => {
     const { announcement } = useContext(Context);
@@ -45,7 +46,7 @@ const Main = observer(() => {
     }, [announcement.inputSearch])
 
 
-    return (
+    return (<>
         <Container >
             <Form className="mt-4 row">
                 <Col md={3} className="mb-3">
@@ -58,6 +59,8 @@ const Main = observer(() => {
                 </Col>
             </Form>
         </Container>
+        <FooterComponent />
+    </>
     )
 });
 

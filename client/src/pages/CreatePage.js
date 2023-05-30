@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 import { createAnnouncement } from '../http/privateAPI';
 import { useNavigate } from "react-router-dom";
 import Maps from '../components/Maps';
+import FooterComponent from '../components/FooterComponent';
 
 
 
@@ -56,125 +57,133 @@ const CreatePage = observer(() => {
         formData.append('info', JSON.stringify(info))
         if (checkAddposition) {
             formData.append('position', `${authStore.myposition[0]}, ${authStore.myposition[1]}`)
+        } else {
+            formData.append('position', `0, 0`)
         }
         //console.log(authStore.myposition)
         createAnnouncement(formData).then(() => navigate("/"))
     }
 
     return (
-        <Container className="d-flex justify-content-center align-items-center">
-            <Card md={6} className="m-4 " style={{ width: 600, }} >
-                <h1 id="contained-modal-title-vcenter"  >
-                    Створення оголошення
-                </h1>
-                <Form>
-                    <Dropdown className="mt-2 mb-2">
-                        <Dropdown.Toggle>{announcement.selectedLesson.name || "Оберіть предмет"}</Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {announcement.lessons.map(lesson =>
-                                <Dropdown.Item
-                                    onClick={() => announcement.setSelectedLesson(lesson)}
-                                    key={lesson.id}
-                                >
-                                    {lesson.name}
-                                </Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown className="mt-2 mb-2">
-                        <Dropdown.Toggle>{announcement.selectedCity.name || "Оберіть місто"}</Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {announcement.cities.map(city =>
-                                <Dropdown.Item
-                                    onClick={() => announcement.setSelectedCity(city)}
-                                    key={city.id}
-                                >
-                                    {city.name}
-                                </Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <Form.Control
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                        className="mt-3"
-                        placeholder="Введіть назву оголошення"
-                    />
-                    <Form.Control
-                        value={price}
-                        onChange={e => setPrice(Number(e.target.value))}
-                        className="mt-3"
-                        placeholder="Введіть ціну за одну лекцію"
-                        type="number"
-                    />
-                    <Form.Control
-                        className="mt-3"
-                        type="file"
-                        onChange={selectFile}
-                    />
+        <>
+            <Container className="d-flex justify-content-center align-items-center">
+                <Card md={6} className="mt-4 " style={{ width: 600, }} >
+                    <h1 id="contained-modal-title-vcenter"  >
+                        Створення оголошення
+                    </h1>
+                    <Form>
+                        <Form className='d-flex'>
+                            <Dropdown className="">
+                                <Dropdown.Toggle>{announcement.selectedLesson.name || "Оберіть предмет"}</Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {announcement.lessons.map(lesson =>
+                                        <Dropdown.Item
+                                            onClick={() => announcement.setSelectedLesson(lesson)}
+                                            key={lesson.id}
+                                        >
+                                            {lesson.name}
+                                        </Dropdown.Item>
+                                    )}
+                                </Dropdown.Menu>
+
+                            </Dropdown>
+                            <Dropdown className="">
+                                <Dropdown.Toggle>{announcement.selectedCity.name || "Оберіть місто"}</Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {announcement.cities.map(city =>
+                                        <Dropdown.Item
+                                            onClick={() => announcement.setSelectedCity(city)}
+                                            key={city.id}
+                                        >
+                                            {city.name}
+                                        </Dropdown.Item>
+                                    )}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Form>
+                        <Form.Control
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                            className="mt-3"
+                            placeholder="Введіть назву оголошення"
+                        />
+                        <Form.Control
+                            value={price}
+                            onChange={e => setPrice(Number(e.target.value))}
+                            className="mt-3"
+                            placeholder="Введіть ціну за одну лекцію"
+                            type="number"
+                        />
+                        <Form.Control
+                            className="mt-3"
+                            type="file"
+                            onChange={selectFile}
+                        />
+                        <hr />
+                        <Form.Control
+                            value={briefinfo}
+                            onChange={e => setBriefinfo(e.target.value)}
+                            className="mt-3"
+                            placeholder="Короткий опис..."
+                        />
+                        <Button
+                            variant={"outline-dark"}
+                            onClick={addInfo}
+                            className="mt-3"
+
+                        >
+                            Додати нову інформацію
+                        </Button>
+                        {info.map(i =>
+                            <Row className="mt-4" key={i.number}>
+                                <Col md={4}>
+                                    <Form.Control
+                                        value={i.title}
+                                        onChange={(e) => changeInfo('title', e.target.value, i.number)}
+                                        placeholder="Введіть назву"
+                                    />
+                                </Col>
+                                <Col md={4}>
+                                    <Form.Control
+                                        value={i.description}
+                                        onChange={(e) => changeInfo('description', e.target.value, i.number)}
+                                        placeholder="Введіть опис"
+                                    />
+                                </Col>
+                                <Col md={4}>
+                                    <Button
+                                        onClick={() => removeInfo(i.number)}
+                                        variant={"outline-danger"}
+                                    >
+                                        Видалити
+                                    </Button>
+                                </Col>
+                            </Row>
+                        )}
+                    </Form>
                     <hr />
-                    <Form.Control
-                        value={briefinfo}
-                        onChange={e => setBriefinfo(e.target.value)}
-                        className="mt-3"
-                        placeholder="Короткий опис..."
-                    />
-                    <Button
-                        variant={"outline-dark"}
-                        onClick={addInfo}
-                        className="mt-3"
+                    <Form>
+                        <Button
+                            variant={"outline-dark"}
+                            onClick={() => setCheckAddposition(!checkAddposition)}
+                            className="mt-3"
 
-                    >
-                        Додати нову інформацію
-                    </Button>
-                    {info.map(i =>
-                        <Row className="mt-4" key={i.number}>
-                            <Col md={4}>
-                                <Form.Control
-                                    value={i.title}
-                                    onChange={(e) => changeInfo('title', e.target.value, i.number)}
-                                    placeholder="Введіть назву"
-                                />
-                            </Col>
-                            <Col md={4}>
-                                <Form.Control
-                                    value={i.description}
-                                    onChange={(e) => changeInfo('description', e.target.value, i.number)}
-                                    placeholder="Введіть опис"
-                                />
-                            </Col>
-                            <Col md={4}>
-                                <Button
-                                    onClick={() => removeInfo(i.number)}
-                                    variant={"outline-danger"}
-                                >
-                                    Видалити
-                                </Button>
-                            </Col>
-                        </Row>
-                    )}
-                </Form>
-                <hr />
-                <Form>
-                    <Button
-                        variant={"outline-dark"}
-                        onClick={() => setCheckAddposition(!checkAddposition)}
-                        className="mt-3"
-
-                    >
-                        Додати Ваше місцезнаходження
-                    </Button>
-                    {checkAddposition &&
-                        <Maps bool={false} size={{ height: "400px", width: "500px" }}
-                            positionStr={[10, 10]} />
-                    }
-                </Form>
-                <Form className="mt-4">
-                    <Button variant="outline-danger" >Закрити</Button>
-                    <Button variant="outline-success" onClick={addAnnouncement}>Створити оголошення</Button>
-                </Form>
-            </Card >
-        </Container >
+                        >
+                            Додати Ваше місцезнаходження
+                        </Button>
+                        {checkAddposition &&
+                            <Maps bool={false} size={{ height: "400px", width: "500px" }}
+                                positionStr={[10, 10]} />
+                        }
+                    </Form>
+                    <Form className="mt-4">
+                        <Button variant="outline-danger" >Закрити</Button>
+                        <Button variant="outline-success" onClick={addAnnouncement}>Створити оголошення</Button>
+                    </Form>
+                </Card >
+            </Container >
+            <FooterComponent />
+        </>
     );
 })
 

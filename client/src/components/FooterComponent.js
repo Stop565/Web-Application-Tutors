@@ -6,9 +6,9 @@ import { Form, ModalFooter } from 'react-bootstrap';
 
 const FooterComponent = () => {
     return (
-        <ModalFooter className="footer ">
+        <ModalFooter className="footer mt-5">
             <Form className="footerDiv">
-                <h4>2023</h4>
+                <h4></h4>
             </Form>
 
         </ModalFooter>

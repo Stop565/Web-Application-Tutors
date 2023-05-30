@@ -112,6 +112,7 @@ const AnnouncementPage = observer(() => {
                 </Row>
 
                 <Row>
+                    <h2>Розташування</h2>
                     <Maps bool={true} size={{ height: "400px", width: "700px" }} positionStr={oneAnnouncement.position} />
                 </Row>
             </Container>
